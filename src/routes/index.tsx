@@ -293,13 +293,14 @@ function MarqueeRow({ items, reverse = false }: { items: string[]; reverse?: boo
 function SectionHeader({ label, title }: { label: string; title: React.ReactNode }) {
   return (
     <div className="max-w-3xl">
-      <div className="section-label mb-4">/ {label}</div>
-      <h2 className="font-display font-bold text-4xl md:text-6xl leading-[0.98] tracking-tight">
+      <div className="section-label mb-5">{label}</div>
+      <h2 className="font-display font-semibold text-[2.25rem] md:text-5xl leading-[1.02] tracking-[-0.025em]">
         {title}
       </h2>
     </div>
   );
 }
+
 
 function Services() {
   return (
