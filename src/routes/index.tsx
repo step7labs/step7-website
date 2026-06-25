@@ -477,7 +477,7 @@ function Contact() {
       <div className="glow-orb-cyan" style={{ top: "10%", left: "20%", opacity: 0.6 }} />
       <div className="relative mx-auto max-w-5xl text-center">
         <div className="section-label mb-6">/ LET'S BUILD</div>
-        <h2 className="font-display font-extrabold leading-[0.95] tracking-tight" style={{ fontSize: "clamp(2.5rem, 7vw, 6rem)" }}>
+        <h2 className="font-display font-semibold leading-[1.02] tracking-[-0.03em]" style={{ fontSize: "clamp(2.25rem, 5.5vw, 4.75rem)" }}>
           Ready to build something
           <br />
           <span className="italic text-primary">extraordinary?</span>
