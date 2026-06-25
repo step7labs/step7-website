@@ -135,27 +135,28 @@ function Index() {
 
 function Nav() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-background/60 border-b hairline">
-      <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
-        <a href="#top" className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center">
-            <Sparkles className="w-4 h-4 text-primary" />
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-background/70 border-b hairline">
+      <div className="mx-auto max-w-6xl px-8 h-20 flex items-center justify-between">
+        <a href="#top" className="flex items-center gap-2.5">
+          <div className="w-7 h-7 rounded-lg bg-primary/15 border border-primary/40 flex items-center justify-center">
+            <Sparkles className="w-3.5 h-3.5 text-primary" />
           </div>
-          <span className="font-display font-bold tracking-tight text-lg">Step7Labs</span>
+          <span className="font-display font-semibold tracking-tight text-[15px]">Step7Labs</span>
         </a>
-        <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
-          <a href="#services" className="hover:text-foreground transition">Services</a>
-          <a href="#process" className="hover:text-foreground transition">Process</a>
-          <a href="#work" className="hover:text-foreground transition">Work</a>
-          <a href="#contact" className="hover:text-foreground transition">Contact</a>
+        <nav className="hidden md:flex items-center gap-10 text-[13px] text-muted-foreground">
+          <a href="#services" className="hover:text-foreground transition-colors">Services</a>
+          <a href="#process" className="hover:text-foreground transition-colors">Process</a>
+          <a href="#work" className="hover:text-foreground transition-colors">Work</a>
+          <a href="#contact" className="hover:text-foreground transition-colors">Contact</a>
         </nav>
-        <a href="#contact" className="btn-primary !py-2 !px-4 text-sm">
-          Start Project <ArrowRight className="w-4 h-4" />
+        <a href="#contact" className="btn-primary !py-2 !px-4 text-[13px]">
+          Start Project <ArrowRight className="w-3.5 h-3.5" />
         </a>
       </div>
     </header>
   );
 }
+
 
 function Hero({ wordIdx }: { wordIdx: number }) {
   return (
