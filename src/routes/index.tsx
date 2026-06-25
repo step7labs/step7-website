@@ -135,77 +135,77 @@ function Index() {
 
 function Nav() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-background/60 border-b hairline">
-      <div className="mx-auto max-w-7xl px-6 h-16 flex items-center justify-between">
-        <a href="#top" className="flex items-center gap-2">
-          <div className="w-7 h-7 rounded-lg bg-primary/20 border border-primary/40 flex items-center justify-center">
-            <Sparkles className="w-4 h-4 text-primary" />
+    <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-background/70 border-b hairline">
+      <div className="mx-auto max-w-6xl px-8 h-20 flex items-center justify-between">
+        <a href="#top" className="flex items-center gap-2.5">
+          <div className="w-7 h-7 rounded-lg bg-primary/15 border border-primary/40 flex items-center justify-center">
+            <Sparkles className="w-3.5 h-3.5 text-primary" />
           </div>
-          <span className="font-display font-bold tracking-tight text-lg">Step7Labs</span>
+          <span className="font-display font-semibold tracking-tight text-[15px]">Step7Labs</span>
         </a>
-        <nav className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
-          <a href="#services" className="hover:text-foreground transition">Services</a>
-          <a href="#process" className="hover:text-foreground transition">Process</a>
-          <a href="#work" className="hover:text-foreground transition">Work</a>
-          <a href="#contact" className="hover:text-foreground transition">Contact</a>
+        <nav className="hidden md:flex items-center gap-10 text-[13px] text-muted-foreground">
+          <a href="#services" className="hover:text-foreground transition-colors">Services</a>
+          <a href="#process" className="hover:text-foreground transition-colors">Process</a>
+          <a href="#work" className="hover:text-foreground transition-colors">Work</a>
+          <a href="#contact" className="hover:text-foreground transition-colors">Contact</a>
         </nav>
-        <a href="#contact" className="btn-primary !py-2 !px-4 text-sm">
-          Start Project <ArrowRight className="w-4 h-4" />
+        <a href="#contact" className="btn-primary !py-2 !px-4 text-[13px]">
+          Start Project <ArrowRight className="w-3.5 h-3.5" />
         </a>
       </div>
     </header>
   );
 }
 
+
 function Hero({ wordIdx }: { wordIdx: number }) {
   return (
-    <section id="top" className="relative grain min-h-screen flex items-center pt-24 pb-16">
-      <div className="glow-orb-primary animate-float-slow" style={{ top: "10%", left: "-10%" }} />
+    <section id="top" className="relative grain min-h-screen flex items-center pt-32 pb-24">
+      <div className="glow-orb-primary animate-float-slow" style={{ top: "5%", left: "-15%", opacity: 0.7 }} />
       <div
         className="glow-orb-cyan animate-float-slow"
-        style={{ bottom: "-10%", right: "-10%", animationDelay: "-7s" }}
+        style={{ bottom: "-15%", right: "-15%", animationDelay: "-7s", opacity: 0.6 }}
       />
       <BackgroundMesh />
 
-      <div className="relative mx-auto max-w-7xl px-6 w-full">
-        <div className="flex items-center gap-2 mb-8 animate-fade-up">
-          <span className="w-2 h-2 rounded-full bg-secondary shadow-[0_0_12px_rgba(0,229,204,0.8)]" />
+      <div className="relative mx-auto max-w-6xl px-8 w-full">
+        <div className="flex items-center gap-2.5 mb-10 animate-fade-up">
+          <span className="w-1.5 h-1.5 rounded-full bg-secondary shadow-[0_0_10px_rgba(0,229,204,0.8)]" />
           <span className="font-mono-tech text-muted-foreground">
-            / AI-Integrated Web Studio · Est. 2024
+            AI-Integrated Web Studio · Est. 2024
           </span>
         </div>
 
         <h1
-          className="font-display font-extrabold leading-[0.92] tracking-tight animate-fade-up"
-          style={{ fontSize: "clamp(3rem, 10vw, 8.5rem)", animationDelay: "0.1s" }}
+          className="font-display font-semibold leading-[0.98] tracking-[-0.035em] animate-fade-up max-w-[14ch]"
+          style={{ fontSize: "clamp(2.5rem, 7.5vw, 6.5rem)", animationDelay: "0.1s" }}
         >
-          We Build Websites
+          We build websites
           <br />
-          That <span className="italic text-primary">Think.</span>
+          that <span className="italic font-normal text-primary">think.</span>
         </h1>
 
         <p
-          className="mt-8 max-w-2xl text-lg md:text-xl text-muted-foreground leading-relaxed animate-fade-up"
+          className="mt-10 max-w-xl text-xl md:text-2xl text-foreground/85 leading-[1.5] font-light animate-fade-up"
           style={{ animationDelay: "0.25s" }}
         >
-          Step7Labs crafts AI-integrated web experiences for businesses that refuse
-          to be ordinary.
+          Step7Labs crafts AI-integrated web experiences for businesses that refuse to be ordinary.
         </p>
 
         <div
-          className="mt-6 flex items-center gap-3 font-mono-tech text-muted-foreground animate-fade-up"
+          className="mt-8 flex items-center gap-3 font-mono-tech text-muted-foreground animate-fade-up"
           style={{ animationDelay: "0.35s" }}
         >
           <span className="text-primary">{">"}</span>
           <span>building</span>
-          <span key={wordIdx} className="text-foreground animate-fade-up">
+          <span key={wordIdx} className="text-foreground/90 animate-fade-up">
             {rotatingWords[wordIdx]}
           </span>
-          <span className="inline-block w-2 h-4 bg-primary animate-pulse" />
+          <span className="inline-block w-[6px] h-3.5 bg-primary animate-pulse" />
         </div>
 
         <div
-          className="mt-10 flex flex-wrap items-center gap-4 animate-fade-up"
+          className="mt-12 flex flex-wrap items-center gap-4 animate-fade-up"
           style={{ animationDelay: "0.45s" }}
         >
           <a href="#contact" className="btn-primary">
@@ -215,15 +215,15 @@ function Hero({ wordIdx }: { wordIdx: number }) {
         </div>
 
         <div
-          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 pt-10 border-t hairline animate-fade-up"
+          className="mt-28 grid grid-cols-2 md:grid-cols-4 gap-8 pt-12 border-t hairline animate-fade-up"
           style={{ animationDelay: "0.6s" }}
         >
           {stats.map((s) => (
             <div key={s.l}>
-              <div className="font-display text-3xl md:text-4xl font-bold text-foreground drop-shadow-[0_0_20px_rgba(108,99,255,0.4)]">
+              <div className="font-display text-3xl md:text-[2.5rem] font-semibold tracking-tight text-foreground">
                 {s.v}
               </div>
-              <div className="mt-2 font-mono-tech text-muted-foreground">{s.l}</div>
+              <div className="mt-3 font-mono-tech text-muted-foreground">{s.l}</div>
             </div>
           ))}
         </div>
@@ -231,6 +231,7 @@ function Hero({ wordIdx }: { wordIdx: number }) {
     </section>
   );
 }
+
 
 function BackgroundMesh() {
   return (
@@ -292,13 +293,14 @@ function MarqueeRow({ items, reverse = false }: { items: string[]; reverse?: boo
 function SectionHeader({ label, title }: { label: string; title: React.ReactNode }) {
   return (
     <div className="max-w-3xl">
-      <div className="section-label mb-4">/ {label}</div>
-      <h2 className="font-display font-bold text-4xl md:text-6xl leading-[0.98] tracking-tight">
+      <div className="section-label mb-5">{label}</div>
+      <h2 className="font-display font-semibold text-[2.25rem] md:text-5xl leading-[1.02] tracking-[-0.025em]">
         {title}
       </h2>
     </div>
   );
 }
+
 
 function Services() {
   return (
@@ -475,7 +477,7 @@ function Contact() {
       <div className="glow-orb-cyan" style={{ top: "10%", left: "20%", opacity: 0.6 }} />
       <div className="relative mx-auto max-w-5xl text-center">
         <div className="section-label mb-6">/ LET'S BUILD</div>
-        <h2 className="font-display font-extrabold leading-[0.95] tracking-tight" style={{ fontSize: "clamp(2.5rem, 7vw, 6rem)" }}>
+        <h2 className="font-display font-semibold leading-[1.02] tracking-[-0.03em]" style={{ fontSize: "clamp(2.25rem, 5.5vw, 4.75rem)" }}>
           Ready to build something
           <br />
           <span className="italic text-primary">extraordinary?</span>
