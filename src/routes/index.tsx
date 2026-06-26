@@ -440,8 +440,8 @@ function HomePage() {
 
       {/* CTA strip */}
       <section className="py-28 md:py-40 border-t hairline relative overflow-hidden">
-        <div className="glow-ring w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-          style={{ background: "rgb(120, 80, 220)" }} />
+        <div className="glow-ring w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-25"
+          style={{ background: "rgb(80, 60, 140)" }} />
         <div className="mx-auto max-w-7xl px-6 md:px-10 text-center relative">
           <div className="section-label mb-8">/ Next</div>
           <h2 className="font-display leading-[0.98] tracking-[-0.015em]" style={{ fontSize: "clamp(2.5rem, 7vw, 6rem)" }}>
