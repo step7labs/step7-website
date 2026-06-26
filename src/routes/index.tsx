@@ -49,9 +49,9 @@ const services = [
 ];
 
 const work = [
-  { name: "Lumen Capital", tag: "Fintech · Platform", metric: "+38% activation", year: "2025", img: workLumen },
-  { name: "Drift Analytics", tag: "SaaS · Logistics", metric: "2.1× pipeline", year: "2025", img: workDrift },
-  { name: "Veltro Studio", tag: "Brand · E-commerce", metric: "+62% AOV", year: "2024", img: workVeltro },
+  { name: "Lumen Capital", tag: "Fintech · Platform", metric: "+38% activation", year: "2025", img: workLumen, quote: "They shipped what our last two agencies promised — in half the time.", author: "Priya N., Head of Product" },
+  { name: "Drift Analytics", tag: "SaaS · Logistics", metric: "2.1× pipeline", year: "2025", img: workDrift, quote: "The clearest creative process we've worked with. Calm, fast, exact.", author: "Marcus L., CEO" },
+  { name: "Veltro Studio", tag: "Brand · E-commerce", metric: "+62% AOV", year: "2024", img: workVeltro, quote: "Our store finally feels like the brand we always described in pitches.", author: "Ines V., Founder" },
 ];
 
 const steps = [
@@ -90,22 +90,28 @@ function HomePage() {
   return (
     <>
       {/* Hero with full-bleed visual */}
-      <section className="relative pt-32 md:pt-40 pb-24 md:pb-32 overflow-hidden border-b hairline">
-        {/* Background image */}
+      <section className="relative pt-32 md:pt-40 pb-20 md:pb-32 overflow-hidden border-b hairline">
+        {/* Background image — darker, directional */}
         <div className="absolute inset-0 -z-10">
           <img
             src={heroBg}
             alt=""
-            className="w-full h-full object-cover opacity-70"
+            className="w-full h-full object-cover opacity-30"
             width={1920}
             height={1280}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/60 to-background" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,transparent,var(--background)_70%)]" />
+          <div className="absolute inset-0 bg-background/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/80 to-background" />
         </div>
-        {/* Glow orbs */}
-        <div className="glow-ring w-[600px] h-[600px] -top-40 -left-40" style={{ background: "rgb(120, 80, 220)" }} />
-        <div className="glow-ring w-[500px] h-[500px] top-40 -right-20" style={{ background: "rgb(40, 180, 200)" }} />
+        {/* Single directional glow behind the mockup (top-right area) */}
+        <div
+          className="glow-ring hidden lg:block w-[520px] h-[520px] top-24 right-[-80px] opacity-40"
+          style={{ background: "rgb(90, 60, 180)" }}
+        />
+        <div
+          className="glow-ring hidden lg:block w-[360px] h-[360px] top-60 right-[10%] opacity-30"
+          style={{ background: "rgb(40, 140, 180)" }}
+        />
 
         <div className="mx-auto max-w-7xl px-6 md:px-10 relative">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
@@ -147,15 +153,23 @@ function HomePage() {
                 </Link>
               </div>
 
-              <div
-                className="mt-12 flex items-baseline gap-4 font-mono-tech text-muted-foreground animate-fade-up"
+              <Link
+                to="/work"
+                className="group mt-12 inline-flex items-center gap-4 font-mono-tech text-muted-foreground animate-fade-up hover:text-foreground transition-colors"
                 style={{ animationDelay: "0.35s" }}
               >
-                <span>Currently building</span>
-                <span key={i} className="text-foreground animate-fade-in normal-case tracking-tight font-sans text-base">
+                <span className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse-dot" />
+                  Currently building
+                </span>
+                <span
+                  key={i}
+                  className="text-foreground animate-fade-in normal-case tracking-tight font-sans text-base border-b border-foreground/20 group-hover:border-foreground/60"
+                >
                   {rotating[i]}
                 </span>
-              </div>
+                <ArrowUpRight className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 group-hover:-translate-y-0.5 transition-all" />
+              </Link>
             </div>
 
             {/* Hero device mockup */}
@@ -164,7 +178,7 @@ function HomePage() {
               style={{ animationDelay: "0.3s" }}
             >
               <div className="relative animate-float">
-                <div className="absolute -inset-6 rounded-3xl bg-gradient-to-br from-purple-500/20 via-transparent to-cyan-400/20 blur-2xl" />
+                <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-white/5 via-transparent to-white/5 blur-2xl" />
                 <BrowserChrome label="nexora.app / overview">
                   <img
                     src={heroDevices}
@@ -301,14 +315,16 @@ function HomePage() {
                 }`}
               >
                 <div className="lg:col-span-8 relative">
-                  <div className="absolute -inset-8 rounded-3xl bg-gradient-to-br from-purple-500/10 via-transparent to-cyan-400/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  <div className="absolute -inset-8 rounded-3xl bg-white/[0.03] blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                   <BrowserChrome label={`${p.name.toLowerCase().replace(/\s/g, "")}.com`}>
-                    <img
-                      src={p.img}
-                      alt={p.name}
-                      loading="lazy"
-                      className="w-full h-auto block group-hover:scale-[1.02] transition-transform duration-700"
-                    />
+                    <div className="aspect-[16/10] overflow-hidden bg-surface">
+                      <img
+                        src={p.img}
+                        alt={p.name}
+                        loading="lazy"
+                        className="w-full h-full object-cover block group-hover:scale-[1.02] transition-transform duration-700"
+                      />
+                    </div>
                   </BrowserChrome>
                 </div>
                 <div className="lg:col-span-4">
@@ -319,6 +335,12 @@ function HomePage() {
                     {p.name}
                     <ArrowUpRight className="w-7 h-7 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                   </h3>
+                  <blockquote className="mt-6 font-display text-xl md:text-2xl text-foreground/85 leading-snug italic">
+                    "{p.quote}"
+                  </blockquote>
+                  <div className="mt-3 font-mono-tech text-muted-foreground">
+                    — {p.author}
+                  </div>
                   <div className="mt-6 pt-6 border-t hairline">
                     <div className="font-mono-tech text-muted-foreground mb-1">Outcome</div>
                     <div className="font-display text-3xl">{p.metric}</div>
@@ -418,8 +440,8 @@ function HomePage() {
 
       {/* CTA strip */}
       <section className="py-28 md:py-40 border-t hairline relative overflow-hidden">
-        <div className="glow-ring w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-          style={{ background: "rgb(120, 80, 220)" }} />
+        <div className="glow-ring w-[600px] h-[600px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-25"
+          style={{ background: "rgb(80, 60, 140)" }} />
         <div className="mx-auto max-w-7xl px-6 md:px-10 text-center relative">
           <div className="section-label mb-8">/ Next</div>
           <h2 className="font-display leading-[0.98] tracking-[-0.015em]" style={{ fontSize: "clamp(2.5rem, 7vw, 6rem)" }}>
