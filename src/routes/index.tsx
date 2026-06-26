@@ -315,14 +315,16 @@ function HomePage() {
                 }`}
               >
                 <div className="lg:col-span-8 relative">
-                  <div className="absolute -inset-8 rounded-3xl bg-gradient-to-br from-purple-500/10 via-transparent to-cyan-400/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  <div className="absolute -inset-8 rounded-3xl bg-white/[0.03] blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                   <BrowserChrome label={`${p.name.toLowerCase().replace(/\s/g, "")}.com`}>
-                    <img
-                      src={p.img}
-                      alt={p.name}
-                      loading="lazy"
-                      className="w-full h-auto block group-hover:scale-[1.02] transition-transform duration-700"
-                    />
+                    <div className="aspect-[16/10] overflow-hidden bg-surface">
+                      <img
+                        src={p.img}
+                        alt={p.name}
+                        loading="lazy"
+                        className="w-full h-full object-cover block group-hover:scale-[1.02] transition-transform duration-700"
+                      />
+                    </div>
                   </BrowserChrome>
                 </div>
                 <div className="lg:col-span-4">
@@ -333,6 +335,12 @@ function HomePage() {
                     {p.name}
                     <ArrowUpRight className="w-7 h-7 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
                   </h3>
+                  <blockquote className="mt-6 font-display text-xl md:text-2xl text-foreground/85 leading-snug italic">
+                    "{p.quote}"
+                  </blockquote>
+                  <div className="mt-3 font-mono-tech text-muted-foreground">
+                    — {p.author}
+                  </div>
                   <div className="mt-6 pt-6 border-t hairline">
                     <div className="font-mono-tech text-muted-foreground mb-1">Outcome</div>
                     <div className="font-display text-3xl">{p.metric}</div>
