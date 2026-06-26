@@ -49,9 +49,9 @@ const services = [
 ];
 
 const work = [
-  { name: "Lumen Capital", tag: "Fintech · Platform", metric: "+38% activation", year: "2025", img: workLumen },
-  { name: "Drift Analytics", tag: "SaaS · Logistics", metric: "2.1× pipeline", year: "2025", img: workDrift },
-  { name: "Veltro Studio", tag: "Brand · E-commerce", metric: "+62% AOV", year: "2024", img: workVeltro },
+  { name: "Lumen Capital", tag: "Fintech · Platform", metric: "+38% activation", year: "2025", img: workLumen, quote: "They shipped what our last two agencies promised — in half the time.", author: "Priya N., Head of Product" },
+  { name: "Drift Analytics", tag: "SaaS · Logistics", metric: "2.1× pipeline", year: "2025", img: workDrift, quote: "The clearest creative process we've worked with. Calm, fast, exact.", author: "Marcus L., CEO" },
+  { name: "Veltro Studio", tag: "Brand · E-commerce", metric: "+62% AOV", year: "2024", img: workVeltro, quote: "Our store finally feels like the brand we always described in pitches.", author: "Ines V., Founder" },
 ];
 
 const steps = [
