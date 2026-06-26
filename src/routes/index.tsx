@@ -153,15 +153,23 @@ function HomePage() {
                 </Link>
               </div>
 
-              <div
-                className="mt-12 flex items-baseline gap-4 font-mono-tech text-muted-foreground animate-fade-up"
+              <Link
+                to="/work"
+                className="group mt-12 inline-flex items-center gap-4 font-mono-tech text-muted-foreground animate-fade-up hover:text-foreground transition-colors"
                 style={{ animationDelay: "0.35s" }}
               >
-                <span>Currently building</span>
-                <span key={i} className="text-foreground animate-fade-in normal-case tracking-tight font-sans text-base">
+                <span className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse-dot" />
+                  Currently building
+                </span>
+                <span
+                  key={i}
+                  className="text-foreground animate-fade-in normal-case tracking-tight font-sans text-base border-b border-foreground/20 group-hover:border-foreground/60"
+                >
                   {rotating[i]}
                 </span>
-              </div>
+                <ArrowUpRight className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 group-hover:-translate-y-0.5 transition-all" />
+              </Link>
             </div>
 
             {/* Hero device mockup */}
