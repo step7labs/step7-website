@@ -90,22 +90,28 @@ function HomePage() {
   return (
     <>
       {/* Hero with full-bleed visual */}
-      <section className="relative pt-32 md:pt-40 pb-24 md:pb-32 overflow-hidden border-b hairline">
-        {/* Background image */}
+      <section className="relative pt-32 md:pt-40 pb-20 md:pb-32 overflow-hidden border-b hairline">
+        {/* Background image — darker, directional */}
         <div className="absolute inset-0 -z-10">
           <img
             src={heroBg}
             alt=""
-            className="w-full h-full object-cover opacity-70"
+            className="w-full h-full object-cover opacity-30"
             width={1920}
             height={1280}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/60 to-background" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,transparent,var(--background)_70%)]" />
+          <div className="absolute inset-0 bg-background/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/80 to-background" />
         </div>
-        {/* Glow orbs */}
-        <div className="glow-ring w-[600px] h-[600px] -top-40 -left-40" style={{ background: "rgb(120, 80, 220)" }} />
-        <div className="glow-ring w-[500px] h-[500px] top-40 -right-20" style={{ background: "rgb(40, 180, 200)" }} />
+        {/* Single directional glow behind the mockup (top-right area) */}
+        <div
+          className="glow-ring hidden lg:block w-[520px] h-[520px] top-24 right-[-80px] opacity-40"
+          style={{ background: "rgb(90, 60, 180)" }}
+        />
+        <div
+          className="glow-ring hidden lg:block w-[360px] h-[360px] top-60 right-[10%] opacity-30"
+          style={{ background: "rgb(40, 140, 180)" }}
+        />
 
         <div className="mx-auto max-w-7xl px-6 md:px-10 relative">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
