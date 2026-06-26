@@ -178,7 +178,7 @@ function HomePage() {
               style={{ animationDelay: "0.3s" }}
             >
               <div className="relative animate-float">
-                <div className="absolute -inset-6 rounded-3xl bg-gradient-to-br from-purple-500/20 via-transparent to-cyan-400/20 blur-2xl" />
+                <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-white/5 via-transparent to-white/5 blur-2xl" />
                 <BrowserChrome label="nexora.app / overview">
                   <img
                     src={heroDevices}
