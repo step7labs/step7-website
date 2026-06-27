@@ -24,17 +24,15 @@ export function useInView<T extends HTMLElement>(options?: IntersectionObserverI
 export function Reveal({
   children,
   delay = 0,
-  as: Tag = "div",
   className = "",
   y = 24,
 }: {
   children: ReactNode;
   delay?: number;
-  as?: keyof JSX.IntrinsicElements;
   className?: string;
   y?: number;
 }) {
-  const { ref, inView } = useInView<HTMLElement>();
+  const { ref, inView } = useInView<HTMLDivElement>();
   const style: CSSProperties = {
     transitionDelay: `${delay}ms`,
     transform: inView ? "translate3d(0,0,0)" : `translate3d(0,${y}px,0)`,
@@ -43,8 +41,7 @@ export function Reveal({
       "opacity 1100ms cubic-bezier(0.2,0.7,0.2,1), transform 1100ms cubic-bezier(0.2,0.7,0.2,1)",
     willChange: "opacity, transform",
   };
-  // @ts-expect-error - polymorphic ref
-  return <Tag ref={ref} className={className} style={style}>{children}</Tag>;
+  return <div ref={ref} className={className} style={style}>{children}</div>;
 }
 
 export function WordReveal({
