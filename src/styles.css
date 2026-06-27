@@ -213,10 +213,24 @@
 @utility glow-ring {
   position: absolute;
   border-radius: 9999px;
-  filter: blur(90px);
-  opacity: 0.55;
+  filter: blur(110px);
+  opacity: 0.5;
   pointer-events: none;
+  background: rgba(255,255,255,0.08);
 }
+
+@keyframes scroll-cue {
+  0% { transform: translateY(-100%); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(140%); opacity: 0; }
+}
+@utility animate-scroll-cue { animation: scroll-cue 2.4s ease-in-out infinite; }
+
+@keyframes shimmer-line {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+@utility animate-shimmer { animation: shimmer-line 2.6s ease-in-out infinite; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
