@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { HeroAnimation } from "../components/site/HeroAnimation";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -59,6 +60,8 @@ const work = [
 
 function HomePage() {
   const [i, setI] = useState(0);
+  const heroRef = useRef<HTMLElement>(null);
+  
   useEffect(() => {
     const id = setInterval(() => setI((v) => (v + 1) % rotating.length), 2400);
     return () => clearInterval(id);
@@ -67,8 +70,9 @@ function HomePage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-40 md:pt-52 pb-28 md:pb-40 border-b hairline overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 md:px-10 relative">
+      <section ref={heroRef} className="relative pt-40 md:pt-52 pb-28 md:pb-40 border-b hairline overflow-hidden">
+        <HeroAnimation sectionRef={heroRef} />
+        <div className="mx-auto max-w-7xl px-6 md:px-10 relative z-10">
           <div className="flex items-center gap-3 mb-10 animate-fade-up">
             <span className="w-1.5 h-1.5 rounded-full bg-foreground" />
             <span className="font-mono-tech text-muted-foreground">
