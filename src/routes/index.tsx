@@ -26,7 +26,7 @@ export const Route = createFileRoute("/")({
 const rotating = ["Websites.", "Web Apps.", "SaaS Platforms.", "Brand Systems.", "AI Products."];
 
 const clients = [
-  "Lumen Capital", "Drift Analytics", "Veltro Studio", "Nimbus Retail",
+  "Bricks & Bolt Infra", "NBC Colorzone", "JSS Industries", "Nimbus Retail",
   "Aperture Labs", "North Field", "Ovo Health", "Marin & Co.",
 ];
 
@@ -39,22 +39,22 @@ const services = [
 
 const work = [
   {
-    name: "Lumen Capital",
-    tag: "Fintech · Platform",
-    metric: "+38% activation",
-    year: "2025",
+    name: "Bricks & Bolt Infra",
+    tag: "Architecture · Construction",
+    metric: "Next.js · WebGL",
+    year: "2026",
   },
   {
-    name: "Drift Analytics",
-    tag: "SaaS · Logistics",
-    metric: "2.1× pipeline",
-    year: "2025",
+    name: "NBC Colorzone",
+    tag: "Cosmetics · Manufacturer",
+    metric: "React · Commerce",
+    year: "2026",
   },
   {
-    name: "Veltro Studio",
-    tag: "Brand · E-commerce",
-    metric: "+62% AOV",
-    year: "2024",
+    name: "JSS Industries",
+    tag: "LPG Appliances · Manufacturer",
+    metric: "Vite · Headless",
+    year: "2025",
   },
 ];
 

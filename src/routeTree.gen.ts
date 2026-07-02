@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkRouteImport } from './routes/work'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ProcessRouteImport } from './routes/process'
+import { Route as InvestmentGuideRouteImport } from './routes/investment-guide'
 import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
@@ -30,6 +31,11 @@ const ServicesRoute = ServicesRouteImport.update({
 const ProcessRoute = ProcessRouteImport.update({
   id: '/process',
   path: '/process',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InvestmentGuideRoute = InvestmentGuideRouteImport.update({
+  id: '/investment-guide',
+  path: '/investment-guide',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InsightsRoute = InsightsRouteImport.update({
@@ -58,6 +64,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/insights': typeof InsightsRoute
+  '/investment-guide': typeof InvestmentGuideRoute
   '/process': typeof ProcessRoute
   '/services': typeof ServicesRoute
   '/work': typeof WorkRoute
@@ -67,6 +74,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/insights': typeof InsightsRoute
+  '/investment-guide': typeof InvestmentGuideRoute
   '/process': typeof ProcessRoute
   '/services': typeof ServicesRoute
   '/work': typeof WorkRoute
@@ -77,6 +85,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/insights': typeof InsightsRoute
+  '/investment-guide': typeof InvestmentGuideRoute
   '/process': typeof ProcessRoute
   '/services': typeof ServicesRoute
   '/work': typeof WorkRoute
@@ -88,6 +97,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/insights'
+    | '/investment-guide'
     | '/process'
     | '/services'
     | '/work'
@@ -97,6 +107,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/insights'
+    | '/investment-guide'
     | '/process'
     | '/services'
     | '/work'
@@ -106,6 +117,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/insights'
+    | '/investment-guide'
     | '/process'
     | '/services'
     | '/work'
@@ -116,6 +128,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   InsightsRoute: typeof InsightsRoute
+  InvestmentGuideRoute: typeof InvestmentGuideRoute
   ProcessRoute: typeof ProcessRoute
   ServicesRoute: typeof ServicesRoute
   WorkRoute: typeof WorkRoute
@@ -142,6 +155,13 @@ declare module '@tanstack/react-router' {
       path: '/process'
       fullPath: '/process'
       preLoaderRoute: typeof ProcessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/investment-guide': {
+      id: '/investment-guide'
+      path: '/investment-guide'
+      fullPath: '/investment-guide'
+      preLoaderRoute: typeof InvestmentGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/insights': {
@@ -180,6 +200,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   InsightsRoute: InsightsRoute,
+  InvestmentGuideRoute: InvestmentGuideRoute,
   ProcessRoute: ProcessRoute,
   ServicesRoute: ServicesRoute,
   WorkRoute: WorkRoute,

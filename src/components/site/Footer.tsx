@@ -25,6 +25,7 @@ export function Footer() {
               <ul className="space-y-3 text-foreground/80">
                 <li><Link to="/about" className="hover:text-foreground">About</Link></li>
                 <li><Link to="/work" className="hover:text-foreground">Work</Link></li>
+                <li><Link to="/investment-guide" className="hover:text-foreground">Investment</Link></li>
                 <li><Link to="/insights" className="hover:text-foreground">Insights</Link></li>
                 <li><Link to="/contact" className="hover:text-foreground">Contact</Link></li>
               </ul>

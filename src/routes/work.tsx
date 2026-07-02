@@ -24,15 +24,15 @@ export const Route = createFileRoute("/work")({
 });
 
 const projects = [
-  { name: "Lumen Capital", category: "Fintech", tag: "Investor Portal", year: "2025", metric: "+38% activation", color: "from-neutral-700 to-neutral-900" },
-  { name: "Drift Analytics", category: "SaaS", tag: "Supply Chain", year: "2025", metric: "2.1× pipeline", color: "from-zinc-700 to-zinc-900" },
-  { name: "Veltro Studio", category: "E-commerce", tag: "Headless Shopify", year: "2024", metric: "+62% AOV", color: "from-stone-700 to-stone-900" },
+  { name: "Bricks & Bolt Infra", category: "Architecture", tag: "Corporate Portfolio", year: "2026", metric: "Next.js · WebGL", color: "from-neutral-700 to-neutral-900" },
+  { name: "NBC Colorzone", category: "Cosmetics", tag: "Digital Catalog", year: "2026", metric: "React · Commerce", color: "from-zinc-700 to-zinc-900" },
+  { name: "JSS Industries", category: "LPG Appliances", tag: "Digital Catalog", year: "2025", metric: "Vite · Headless", color: "from-stone-700 to-stone-900" },
   { name: "Nimbus Retail", category: "AI", tag: "Support Copilot", year: "2024", metric: "60% deflection", color: "from-neutral-800 to-black" },
   { name: "Aperture Labs", category: "Brand", tag: "Identity & Site", year: "2024", metric: "Series A close", color: "from-zinc-800 to-black" },
   { name: "North Field", category: "SaaS", tag: "Ops Dashboard", year: "2024", metric: "-40% manual hours", color: "from-stone-800 to-black" },
 ];
 
-const filters = ["All", "Fintech", "SaaS", "E-commerce", "AI", "Brand"] as const;
+const filters = ["All", "Architecture", "Cosmetics", "LPG Appliances", "AI", "Brand"] as const;
 
 function WorkPage() {
   const [filter, setFilter] = useState<(typeof filters)[number]>("All");
