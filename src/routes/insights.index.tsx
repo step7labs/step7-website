@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { PageHero } from "../components/site/PageHero";
 import { ArrowUpRight } from "lucide-react";
 
-export const Route = createFileRoute("/insights")({
+export const Route = createFileRoute("/insights/")({
   head: () => ({
     meta: [
       { title: "Insights — Step7Labs" },
@@ -28,6 +28,7 @@ const posts = [
     date: "Mar 2026",
     read: "6 min",
     excerpt: "Trust isn't a microcopy decision. It's a system — and AI features make every weak point louder.",
+    slug: "designing-for-trust-in-an-ai-first-product",
   },
   {
     title: "Why we stopped writing custom dashboards",
@@ -35,6 +36,7 @@ const posts = [
     date: "Feb 2026",
     read: "4 min",
     excerpt: "A pragmatic stack for internal tools that earn their keep without becoming a second product.",
+    slug: "why-we-stopped-writing-custom-dashboards",
   },
   {
     title: "The case against the AI agency",
@@ -42,6 +44,7 @@ const posts = [
     date: "Jan 2026",
     read: "5 min",
     excerpt: "Why naming a studio after a hype cycle ages badly — and what we tell clients instead.",
+    slug: "the-case-against-the-ai-agency",
   },
   {
     title: "A working brief: what we ask before pitching",
@@ -49,6 +52,7 @@ const posts = [
     date: "Dec 2025",
     read: "7 min",
     excerpt: "The seven questions that decide whether an engagement will succeed before the first sprint.",
+    slug: "a-working-brief",
   },
   {
     title: "Performance is a brand value",
@@ -56,6 +60,7 @@ const posts = [
     date: "Nov 2025",
     read: "5 min",
     excerpt: "Page weight, time-to-interactive, animation frame budgets — how perception is shaped before content loads.",
+    slug: "performance-is-a-brand-value",
   },
 ];
 
@@ -74,8 +79,8 @@ function InsightsPage() {
             {posts.map((p, idx) => (
               <Link
                 key={p.title}
-                to="/insights"
-                className="bg-background grid md:grid-cols-12 gap-6 items-baseline px-2 md:px-6 py-10 md:py-12 hover:bg-surface transition-colors group"
+                to={(p.slug ? `/insights/${p.slug}` : "/insights") as any}
+                className="bg-background grid md:grid-cols-12 gap-6 items-baseline px-2 md:px-6 py-10 md:py-12 hover:bg-surface transition-colors group cursor-pointer"
               >
                 <div className="md:col-span-1 font-mono-tech text-muted-foreground">
                   {String(idx + 1).padStart(2, "0")}
