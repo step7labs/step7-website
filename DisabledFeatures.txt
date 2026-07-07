@@ -1,0 +1,24 @@
+Disabled Features Tracker
+=========================
+
+This file keeps a record of components and sections that have been disabled in the codebase but kept intact for future re-enabling.
+
+1. Digital Thread Illuminator
+   - Location: `src/routes/__root.tsx`
+   - Description: The `<DigitalThread />` background animation component.
+   - Status: Commented out in the root layout.
+
+2. Founders / Team Section
+   - Location: `src/routes/about.tsx`
+   - Description: The section showing "Two founders. One studio. Trusted collaborators."
+   - Status: Commented out in the `AboutPage` component.
+
+3. AI & Automation Placeholder (Selected Work)
+   - Location: `src/routes/index.tsx`
+   - Description: The "First AI & Automation engagements launching soon" item in the Featured Work section.
+   - Status: Commented out in the `work` array.
+
+4. AI & Automation Note (Services)
+   - Location: `src/routes/services.tsx`
+   - Description: The note "An emerging part of our practice..." under the AI & Automation service.
+   - Status: Commented out the `note` property in the `services` array.

@@ -21,31 +21,88 @@ export function Footer() {
 
           <div className="lg:col-span-6 grid grid-cols-2 sm:grid-cols-3 gap-10 text-sm">
             <div>
-              <div className="section-label mb-4">Studio</div>
+              <div className="section-label mb-4">Explore</div>
               <ul className="space-y-3 text-foreground/80">
-                <li><Link to="/about" className="hover:text-foreground">About</Link></li>
-                <li><Link to="/work" className="hover:text-foreground">Work</Link></li>
-                <li><Link to="/investment-guide" className="hover:text-foreground">Investment</Link></li>
-                <li><Link to="/insights" className="hover:text-foreground">Insights</Link></li>
-                <li><Link to="/contact" className="hover:text-foreground">Contact</Link></li>
+                <li>
+                  <Link to="/about" className="hover:text-foreground">
+                    About
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/work" className="hover:text-foreground">
+                    Work
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/investment-guide" className="hover:text-foreground">
+                    Investment
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/insights" className="hover:text-foreground">
+                    Insights
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/contact" className="hover:text-foreground">
+                    Contact
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>
               <div className="section-label mb-4">Services</div>
               <ul className="space-y-3 text-foreground/80">
-                <li><Link to="/services" className="hover:text-foreground">Web Design</Link></li>
-                <li><Link to="/services" className="hover:text-foreground">Development</Link></li>
-                <li><Link to="/services" className="hover:text-foreground">AI Integration</Link></li>
-                <li><Link to="/services" className="hover:text-foreground">Automation</Link></li>
+                <li>
+                  <Link to="/services" className="hover:text-foreground">
+                    Web Design & Development
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/services" className="hover:text-foreground">
+                    AI & Automation
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/services" className="hover:text-foreground">
+                    Custom Software
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/services" className="hover:text-foreground">
+                    Branding
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>
               <div className="section-label mb-4">Connect</div>
               <ul className="space-y-3 text-foreground/80">
-                <li><a href="#" className="hover:text-foreground">LinkedIn</a></li>
-                <li><a href="#" className="hover:text-foreground">Twitter</a></li>
-                <li><a href="#" className="hover:text-foreground">GitHub</a></li>
-                <li><a href="#" className="hover:text-foreground">Dribbble</a></li>
+                <li>
+                  <a href="#" className="hover:text-foreground">
+                    Instagram
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-foreground">
+                    LinkedIn
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-foreground">
+                    Twitter
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-foreground">
+                    GitHub
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-foreground">
+                    Dribbble
+                  </a>
+                </li>
               </ul>
             </div>
           </div>

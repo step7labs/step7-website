@@ -13,6 +13,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "../components/site/Header";
 import { Footer } from "../components/site/Footer";
+import { DigitalThread } from "../components/site/DigitalThread";
 
 function NotFoundComponent() {
   return (
@@ -24,7 +25,9 @@ function NotFoundComponent() {
           The page you're looking for doesn't exist.
         </p>
         <div className="mt-8">
-          <Link to="/" className="btn-primary">Back to home</Link>
+          <Link to="/" className="btn-primary">
+            Back to home
+          </Link>
         </div>
       </div>
     </div>
@@ -42,17 +45,20 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="font-display text-3xl">Something went wrong</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Please try refreshing the page.
-        </p>
+        <p className="mt-2 text-sm text-muted-foreground">Please try refreshing the page.</p>
         <div className="mt-6 flex justify-center gap-3">
           <button
-            onClick={() => { router.invalidate(); reset(); }}
+            onClick={() => {
+              router.invalidate();
+              reset();
+            }}
             className="btn-primary"
           >
             Try again
           </button>
-          <a href="/" className="btn-ghost">Go home</a>
+          <a href="/" className="btn-ghost">
+            Go home
+          </a>
         </div>
       </div>
     </div>
@@ -116,9 +122,10 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen bg-background text-foreground antialiased flex flex-col">
+      <div className="min-h-screen bg-background text-foreground antialiased flex flex-col relative">
+        {/* <DigitalThread /> */}
         <Header />
-        <main className="flex-1">
+        <main className="flex-1 relative z-10">
           <Outlet />
         </main>
         <Footer />

@@ -7,6 +7,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../components/ui/accordion";
+import { WebEstimator } from "../components/pricing/WebEstimator";
+import { CustomQuoteCard } from "../components/pricing/CustomQuoteCard";
 
 export const Route = createFileRoute("/investment-guide")({
   head: () => ({
@@ -35,10 +37,120 @@ function InvestmentGuidePage() {
           </>
         }
         intro="This guide outlines how we approach pricing, what influences project costs, and the types of digital products we build."
+        action={
+          <div className="flex flex-col items-end gap-3 text-right">
+            <Link to="/contact" className="btn-primary">
+              Contact Studio <ArrowRight className="w-4 h-4 ml-2" />
+            </Link>
+            <span className="text-sm text-foreground/60 font-light">For a detailed quote.</span>
+          </div>
+        }
       />
 
+
+
+      {/* Section 2: Services & Investment Grid */}
+      <section className="pt-12 md:pt-16 pb-24 md:pb-32 border-b hairline bg-surface/30">
+        <div className="mx-auto max-w-7xl px-6 md:px-10">
+          <div className="mb-16 md:mb-20 text-center flex flex-col items-center">
+            <div className="section-label mb-6">/ Investment</div>
+            <h2 className="font-display text-4xl md:text-5xl leading-[1.05] tracking-[-0.01em] mb-6 max-w-2xl">
+              Configure your project.
+            </h2>
+            <p className="text-foreground/60 max-w-xl text-lg">
+              We believe in providing clear estimates upfront so you can make informed decisions.
+            </p>
+          </div>
+
+          {/* Web Design & Development (Featured Full Width) */}
+          <div className="mb-24">
+            <div className="mb-10">
+              <h3 className="font-display text-4xl md:text-5xl mb-4">Web Design & Development</h3>
+              <p className="text-foreground/80 text-xl max-w-3xl leading-relaxed">
+                Brand-driven interfaces that feel deliberate, backed by production-grade engineering in React, TanStack, and headless platforms. Use our interactive estimator to configure your build.
+              </p>
+            </div>
+            <WebEstimator />
+          </div>
+
+          {/* Other Services (3-column Grid) */}
+          <div className="border-t hairline pt-24">
+            <div className="mb-10">
+              <h3 className="font-display text-3xl md:text-4xl mb-4">Custom Solutions</h3>
+              <p className="text-foreground/80 text-lg max-w-2xl">
+                For complex logic, automation, and identity work, we evaluate your specific operational needs to provide a precise architectural scope.
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-px bg-border border hairline">
+              {/* AI & Automation */}
+              <div className="bg-background">
+                <CustomQuoteCard
+                  className="h-full hover:bg-surface/50 transition-colors"
+                  contentClassName="p-8 md:p-10 h-full flex flex-col justify-between"
+                  categoryId="ai"
+                  title="AI & Automation"
+                  description="Pragmatic AI features added where they move the needle, alongside internal tools and workflows that compound."
+                  startingPriceNPR={13000}
+                  includedFeatures={[
+                    "CRM / lead-management automation",
+                    "Simple workflow automation (1-3 workflows)",
+                    "Basic chatbot (WhatsApp / FB / web)",
+                    "Advanced AI agent / NLP chatbot",
+                    "Internal dashboards & tools",
+                    "Monthly AI/automation support retainer"
+                  ]}
+                />
+              </div>
+
+              {/* Custom Software */}
+              <div className="bg-background">
+                <CustomQuoteCard
+                  className="h-full hover:bg-surface/50 transition-colors"
+                  contentClassName="p-8 md:p-10 h-full flex flex-col justify-between"
+                  categoryId="software"
+                  title="Custom Software"
+                  description="Complex business logic translated into scalable architectures. We build bounded, logged-in-user products."
+                  startingPriceNPR={175000}
+                  includedFeatures={[
+                    "Mobile apps (basic MVP to mid-complexity)",
+                    "SaaS platforms",
+                    "Client portals",
+                    "Booking systems",
+                    "ERP-lite / admin panels",
+                    "Discovery & scoping sessions"
+                  ]}
+                />
+              </div>
+
+              {/* Branding */}
+              <div className="bg-background">
+                <CustomQuoteCard
+                  className="h-full hover:bg-surface/50 transition-colors"
+                  contentClassName="p-8 md:p-10 h-full flex flex-col justify-between"
+                  categoryId="branding"
+                  title="Branding"
+                  description="Identity work for digital-first companies. Marks, typography, voice, and motion principles."
+                  startingPriceNPR={12000}
+                  includedFeatures={[
+                    "Logo design",
+                    "Full brand identity (colors, fonts, templates)",
+                    "Brand guidelines document",
+                    "Social media graphics",
+                    "Launch assets"
+                  ]}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="py-8 md:py-12 border-b hairline">
-        <div className="mx-auto max-w-7xl px-6 md:px-10 flex flex-wrap items-center gap-4 animate-fade-up" style={{ animationDelay: "0.2s" }}>
+        <div
+          className="mx-auto max-w-7xl px-6 md:px-10 flex flex-wrap items-center justify-center gap-4 animate-fade-up"
+          style={{ animationDelay: "0.2s" }}
+        >
           <Link to="/contact" className="btn-primary">
             Start a project <ArrowRight className="w-4 h-4" />
           </Link>
@@ -59,175 +171,19 @@ function InvestmentGuidePage() {
           </div>
           <div className="md:col-span-7 md:col-start-6">
             <p className="text-xl md:text-2xl font-light text-foreground/80 leading-relaxed mb-8">
-              We do not price websites based on arbitrary templates. Every proposal is tailored according to scope, complexity, features, integrations, content, and timeline.
+              We do not price websites based on arbitrary templates. Every proposal is tailored
+              according to scope, complexity, features, integrations, content, and timeline.
             </p>
             <p className="text-foreground/60 leading-relaxed">
-              The figures below represent typical starting investments. We believe in providing clear estimates upfront so you can make informed decisions about your digital products.
+              The figures below represent typical starting investments. We believe in providing
+              clear estimates upfront so you can make informed decisions about your digital
+              products.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Services Section Moved Below Custom Engineering */}
 
-      {/* Section 3: Website Investment */}
-      <section className="py-24 md:py-32 border-b hairline">
-        <div className="mx-auto max-w-7xl px-6 md:px-10">
-          <div className="mb-16 md:mb-24">
-            <div className="section-label mb-6">/ Website Engagements</div>
-            <h2 className="font-display text-4xl md:text-5xl leading-[1.05] tracking-[-0.01em] mb-6 max-w-2xl">
-              Typical starting investments for standard websites.
-            </h2>
-            <p className="text-foreground/60 max-w-xl text-lg">
-              Below are our most common website engagements. These figures represent typical starting investments. Projects may increase depending on complexity.
-            </p>
-          </div>
-
-          <div className="space-y-px bg-border">
-            {[
-              {
-                name: "Launch Website",
-                price: "NPR 24,999",
-                ideal: "Freelancers, Consultants, Small Businesses",
-                timeline: "2–3 Weeks",
-                features: ["Up to 5 Pages", "Responsive Design", "Contact Forms", "Basic SEO", "Analytics", "Deployment"],
-              },
-              {
-                name: "Business Website",
-                price: "NPR 39,999",
-                ideal: "Growing Businesses, Professional Firms, Brands",
-                timeline: "3–5 Weeks",
-                features: ["CMS", "Blog", "SEO Setup", "Analytics", "Performance Optimisation"],
-              },
-              {
-                name: "Professional Website",
-                price: "NPR 59,999",
-                ideal: "Premium Brands, Technology Companies, Growing Businesses",
-                timeline: "4–6 Weeks",
-                features: ["Custom UI", "Advanced CMS", "Animations", "Integrations", "SEO Foundation", "Performance Optimisation"],
-              },
-              {
-                name: "Corporate Website",
-                price: "NPR 79,999",
-                ideal: "Construction, Healthcare, Education, Manufacturing, Large Organisations",
-                timeline: "6–8 Weeks",
-                features: ["Unlimited Core Pages", "Complex Navigation", "Advanced Components", "Scalable Architecture", "Content Strategy"],
-              },
-              {
-                name: "Ecommerce",
-                price: "NPR 89,999",
-                ideal: "Retail, D2C, Online Stores",
-                timeline: "6–8 Weeks",
-                features: ["Catalogue", "Checkout", "Payments", "Inventory", "Marketing Integrations", "Analytics"],
-              },
-            ].map((tier, idx) => (
-              <div key={idx} className="bg-background grid lg:grid-cols-12 gap-8 lg:gap-12 p-8 md:p-12 hover:bg-surface/50 transition-colors">
-                <div className="lg:col-span-4 flex flex-col justify-between">
-                  <div>
-                    <h3 className="font-display text-3xl md:text-4xl tracking-tight mb-2">{tier.name}</h3>
-                    <div className="font-mono-tech text-muted-foreground mb-6">Starting from</div>
-                    <div className="text-2xl font-light">{tier.price}</div>
-                  </div>
-                </div>
-                <div className="lg:col-span-4 space-y-6">
-                  <div>
-                    <div className="font-mono-tech text-muted-foreground mb-2">Ideal For</div>
-                    <p className="text-foreground/80">{tier.ideal}</p>
-                  </div>
-                  <div>
-                    <div className="font-mono-tech text-muted-foreground mb-2">Timeline</div>
-                    <p className="text-foreground/80">{tier.timeline}</p>
-                  </div>
-                </div>
-                <div className="lg:col-span-4">
-                  <div className="font-mono-tech text-muted-foreground mb-4">Includes</div>
-                  <ul className="space-y-3">
-                    {tier.features.map((f, i) => (
-                      <li key={i} className="flex items-start gap-3 text-foreground/80 text-sm">
-                        <Check className="w-4 h-4 text-foreground/40 mt-0.5 shrink-0" />
-                        <span>{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Section 4: Custom Digital Products */}
-      <section className="py-24 md:py-32 border-b hairline">
-        <div className="mx-auto max-w-7xl px-6 md:px-10 grid lg:grid-cols-2 gap-16 lg:gap-24">
-          <div>
-            <div className="section-label mb-6">/ Custom Engineering</div>
-            <h2 className="font-display text-4xl md:text-5xl leading-[1.05] tracking-[-0.01em] mb-6">
-              Tailored digital products.
-            </h2>
-            <p className="text-foreground/60 text-lg leading-relaxed">
-              These engagements vary significantly in scope and are estimated following a detailed discovery session to understand your specific operational requirements.
-            </p>
-          </div>
-          <div className="space-y-px bg-border">
-            {[
-              "Web Applications",
-              "Business Automation",
-              "AI Integrations",
-              "Discovery Workshops",
-            ].map((item, idx) => (
-              <div key={idx} className="bg-background p-6 md:p-8 flex items-center justify-between group">
-                <span className="font-display text-2xl md:text-3xl tracking-tight">{item}</span>
-                <span className="font-mono-tech text-muted-foreground">Custom Quote</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Section 2: Services */}
-      <section className="py-24 md:py-32 border-b hairline bg-surface/30">
-        <div className="mx-auto max-w-7xl px-6 md:px-10">
-          <div className="section-label mb-12">/ Services</div>
-          <div className="grid md:grid-cols-2 gap-px bg-border">
-            {[
-              {
-                title: "Website Design & Development",
-                desc: "Modern business websites, corporate websites, landing pages and ecommerce experiences.",
-              },
-              {
-                title: "Web Applications",
-                desc: "Custom platforms, dashboards, portals and internal systems.",
-              },
-              {
-                title: "Business Automation",
-                desc: "Workflow optimisation, integrations and operational automation.",
-              },
-              {
-                title: "AI Solutions",
-                desc: "Custom AI integrations, assistants and intelligent workflows.",
-              },
-            ].map((s, i) => (
-              <Link
-                key={i}
-                to="/contact"
-                className="bg-background p-10 md:p-14 group hover:bg-surface transition-colors min-h-[280px] flex flex-col justify-between"
-              >
-                <div>
-                  <h3 className="font-display text-3xl md:text-4xl mb-4 tracking-tight">{s.title}</h3>
-                  <p className="text-foreground/60 leading-relaxed max-w-md">{s.desc}</p>
-                </div>
-                <div className="flex items-center justify-between mt-8">
-                  <span className="relative font-mono-tech text-foreground py-2 px-6 -ml-6 rounded-none transition-colors duration-300 group-hover:text-background z-10">
-                    <span className="absolute inset-0 bg-foreground origin-center scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100 group-hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] transition-all duration-300 ease-out -z-10"></span>
-                    Request Quote
-                  </span>
-                  <ArrowUpRight className="w-6 h-6 text-foreground/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Section 5: What's Included */}
       <section className="py-24 md:py-32 border-b hairline bg-surface/30">
@@ -251,7 +207,10 @@ function InvestmentGuidePage() {
               "Source Code Ownership",
               "Post-launch Support",
             ].map((item, idx) => (
-              <div key={idx} className="flex items-center gap-4 text-foreground/80 py-2 border-b hairline">
+              <div
+                key={idx}
+                className="flex items-center gap-4 text-foreground/80 py-2 border-b hairline"
+              >
                 <Check className="w-4 h-4 text-muted-foreground shrink-0" />
                 <span>{item}</span>
               </div>
@@ -263,20 +222,56 @@ function InvestmentGuidePage() {
       {/* Section 6: How We Work */}
       <section className="py-24 md:py-32 border-b hairline">
         <div className="mx-auto max-w-7xl px-6 md:px-10">
-          <div className="section-label mb-16">/ Process</div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+          <div className="text-center mb-16">
+            <div className="section-label mx-auto">/ Process</div>
+          </div>
+          <div className="grid sm:grid-cols-4 lg:grid-cols-8 gap-12 lg:gap-8">
             {[
-              { num: "01", title: "Discover", desc: "Understanding your business goals, technical constraints, and defining the project scope." },
-              { num: "02", title: "Design", desc: "Crafting editorial interfaces and establishing the visual language for your brand." },
-              { num: "03", title: "Build", desc: "Engineering the platform with scalable, production-ready code and modern frameworks." },
-              { num: "04", title: "Launch", desc: "Rigorous testing, deployment, and handing over the keys to your new digital product." },
+              {
+                num: "01",
+                title: "Discovery",
+                desc: "We listen first. A working session unpacks the business, users, constraints, and definition of done.",
+              },
+              {
+                num: "02",
+                title: "Strategy",
+                desc: "Scope, success metrics, and architecture — agreed before a single screen is designed.",
+              },
+              {
+                num: "03",
+                title: "Design",
+                desc: "Wireframes evolve into a high-fidelity system in Figma, reviewed weekly.",
+              },
+              {
+                num: "04",
+                title: "Build",
+                desc: "Engineering ships in two-week sprints with a staging URL from day one.",
+              },
+              {
+                num: "05",
+                title: "Integration",
+                desc: "Data, AI, payments, analytics — wired in with care and observability.",
+              },
+              {
+                num: "06",
+                title: "Quality",
+                desc: "Performance budgets, accessibility audits, cross-device QA, end-to-end tests.",
+              },
+              {
+                num: "07",
+                title: "Launch & Support",
+                desc: "Go live, monitor, iterate. Retainers available for ongoing work.",
+              },
             ].map((step, idx) => (
-              <div key={idx} className="relative">
+              <div 
+                key={idx} 
+                className={`relative sm:col-span-2 ${idx === 4 ? "lg:col-start-2" : ""} ${idx === 6 ? "sm:col-start-2 lg:col-start-auto" : ""} text-center flex flex-col items-center`}
+              >
                 <div className="font-display text-7xl md:text-8xl text-foreground/10 mb-6 tracking-tighter">
                   {step.num}
                 </div>
                 <h3 className="font-display text-3xl mb-4">{step.title}</h3>
-                <p className="text-foreground/60 text-sm leading-relaxed">{step.desc}</p>
+                <p className="text-foreground/60 text-sm leading-relaxed max-w-xs">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -292,16 +287,16 @@ function InvestmentGuidePage() {
               Frequently asked questions
             </h2>
           </div>
-          
+
           <Accordion type="single" collapsible className="w-full">
             {[
               {
-                q: "Why are prices \"starting from\"?",
+                q: 'Why are prices "starting from"?',
                 a: "Every project has unique requirements. A simple corporate site needs different architecture than an ecommerce platform. The starting price reflects our minimum engagement level for that category of work, with final costs determined by your specific feature set and complexity.",
               },
               {
                 q: "How long does a project take?",
-                a: "Typical websites take 3 to 8 weeks depending on size. Complex web applications or AI integrations can take 2 to 4 months. We provide a precise timeline alongside our proposal after the discovery phase.",
+                a: "Typical websites take 3 to 8 weeks depending on size. Complex custom software or AI & automation projects can take 2 to 4 months. We provide a precise timeline alongside our proposal after the discovery phase.",
               },
               {
                 q: "Can the final quotation change?",
@@ -328,7 +323,11 @@ function InvestmentGuidePage() {
                 a: "It starts with a conversation. Fill out our contact form with some details about your project, and we'll schedule a brief discovery call to see if we're a good fit.",
               },
             ].map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="border-foreground/10 py-2">
+              <AccordionItem
+                key={index}
+                value={`item-${index}`}
+                className="border-foreground/10 py-2"
+              >
                 <AccordionTrigger className="text-lg md:text-xl font-medium hover:no-underline hover:text-foreground/80 transition-colors">
                   {faq.q}
                 </AccordionTrigger>
@@ -345,11 +344,15 @@ function InvestmentGuidePage() {
       <section className="py-28 md:py-40">
         <div className="mx-auto max-w-7xl px-6 md:px-10 text-center">
           <div className="section-label mb-8">/ Next Steps</div>
-          <h2 className="font-display leading-[0.98] tracking-[-0.015em] mb-10" style={{ fontSize: "clamp(2.5rem, 6vw, 5.5rem)" }}>
+          <h2
+            className="font-display leading-[0.98] tracking-[-0.015em] mb-10"
+            style={{ fontSize: "clamp(2.5rem, 6vw, 5.5rem)" }}
+          >
             Let's build something <em className="italic text-foreground/70">exceptional.</em>
           </h2>
           <p className="text-foreground/70 max-w-2xl mx-auto text-lg md:text-xl font-light leading-relaxed mb-12">
-            Whether you're planning a website, web application, automation workflow or AI-powered solution, we'd love to understand your goals and explore how Step7Labs can help.
+            Whether you're planning a website, web application, automation workflow or AI-powered
+            solution, we'd love to understand your goals and explore how Step7Labs can help.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link to="/contact" className="btn-primary">
