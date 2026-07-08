@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState, useRef } from "react";
 import { ArrowUpRight, ArrowRight, ChevronDown } from "lucide-react";
 import { HeroAnimation } from "../components/site/HeroAnimation";
-import { RainfallBackground } from "../components/site/RainfallBackground";
 import { InvestmentTabs } from "../components/pricing/InvestmentTabs";
 import { posts } from "./insights.index";
 import { motion, AnimatePresence } from "framer-motion";
@@ -79,13 +78,6 @@ const work = [
     year: "2025",
     link: "/work"
   },
-  // {
-  //   name: "First AI & Automation engagements launching soon",
-  //   tag: "AI & Automation",
-  //   metric: "In Development",
-  //   year: "2026",
-  //   link: "/contact?service=ai"
-  // }
 ];
 
 const processSteps = [
@@ -200,24 +192,21 @@ function HomePage() {
       </section>
 
       {/* 2. Featured Work (Moved up) */}
-      <div className="relative">
-        <RainfallBackground />
-        <div className="relative z-10">
-          <section className="py-24 md:py-32 border-b hairline bg-surface/30">
+      <section className="py-24 md:py-32 border-b hairline">
         <div className="mx-auto max-w-7xl px-6 md:px-10">
-          <div className="flex items-end justify-between flex-wrap gap-6 mb-16">
+          <div className="flex items-end justify-between flex-wrap gap-6 mb-16 bg-surface border border-border p-8 md:p-12 rounded-3xl">
             <div>
               <div className="section-label mb-5">/ Selected work</div>
               <h2 className="font-display text-4xl md:text-6xl leading-[1.02] tracking-[-0.01em]">
                 Products with intent.
               </h2>
             </div>
-            <Link to="/work" className="link-underline text-sm flex items-center gap-2">
+            <Link to="/work" className="link-underline text-sm flex items-center gap-2 text-foreground">
               All projects <ArrowUpRight className="w-4 h-4" />
             </Link>
           </div>
 
-          <div className="space-y-px bg-border rounded-xl overflow-hidden">
+          <div className="divide-y divide-border border border-border rounded-xl overflow-hidden relative z-20 shadow-2xl">
             {work.map((p, i) => (
               <Link
                 key={i}
@@ -249,7 +238,7 @@ function HomePage() {
               Explore full capabilities <ArrowUpRight className="w-4 h-4" />
             </Link>
           </div>
-          <div className="lg:col-span-7 bg-border rounded-xl overflow-hidden space-y-px">
+          <div className="lg:col-span-7 border border-border rounded-xl overflow-hidden divide-y divide-border">
             {homeServices.map((s) => (
               <HomeServiceCard
                 key={s.id}
@@ -340,7 +329,7 @@ function HomePage() {
             </Link>
           </div>
 
-          <div className="space-y-px bg-border rounded-xl overflow-hidden">
+          <div className="border border-border rounded-xl overflow-hidden divide-y divide-border">
             {posts.slice(0, 3).map((p, idx) => (
               <Link
                 key={p.title}
@@ -377,8 +366,6 @@ function HomePage() {
           </Link>
         </div>
       </section>
-        </div>
-      </div>
     </>
   );
 }

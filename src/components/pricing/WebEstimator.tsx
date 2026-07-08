@@ -207,8 +207,8 @@ export function WebEstimator() {
     const parts = text.split(/(\*\*.*?\*\*)/g);
     return parts.map((part, i) =>
       part.startsWith("**") && part.endsWith("**") ? (
-        <strong key={i} className="font-semibold text-background/90">
-          {part.slice(2, -2)}
+        <strong key={i} className="font-semibold text-black/90">
+          {part.replace(/\*\*/g, "")}
         </strong>
       ) : (
         part
@@ -248,7 +248,7 @@ export function WebEstimator() {
                   }`}
                 >
                   {selectedTypeId === pt.id && (
-                    <Check className="w-3 h-3 text-background" />
+                    <Check className="w-3 h-3 text-black" />
                   )}
                 </div>
               </div>
@@ -294,7 +294,7 @@ export function WebEstimator() {
                       }`}
                     >
                       {isSelected && (
-                        <Check className="w-3 h-3 text-background" />
+                        <Check className="w-3 h-3 text-black" />
                       )}
                     </div>
                   </div>
@@ -341,7 +341,7 @@ export function WebEstimator() {
                       }`}
                     >
                       {isSelected && (
-                        <Check className="w-3 h-3 text-background" />
+                        <Check className="w-3 h-3 text-black" />
                       )}
                     </div>
                   </div>
@@ -399,7 +399,7 @@ export function WebEstimator() {
                       <div
                         className={`mt-0.5 w-5 h-5 rounded border flex items-center justify-center flex-shrink-0 ${
                           isChecked
-                            ? "border-foreground bg-foreground text-background"
+                            ? "border-foreground bg-foreground text-black"
                             : "border-muted-foreground"
                         }`}
                       >
@@ -511,15 +511,9 @@ export function WebEstimator() {
                 <span className="font-sans font-medium text-sm">
                   No maintenance
                 </span>
-                <div
-                  className={`w-5 h-5 rounded-full border flex items-center justify-center ${
-                    maintenanceId === null
-                      ? "border-foreground bg-foreground"
-                      : "border-muted-foreground"
-                  }`}
-                >
+                <div className="w-5 h-5 rounded-full border border-foreground bg-foreground flex items-center justify-center">
                   {maintenanceId === null && (
-                    <Check className="w-3 h-3 text-background" />
+                    <Check className="w-3 h-3 text-black" />
                   )}
                 </div>
               </div>
@@ -553,7 +547,7 @@ export function WebEstimator() {
                       }`}
                     >
                       {isSelected && (
-                        <Check className="w-3 h-3 text-background" />
+                        <Check className="w-3 h-3 text-black" />
                       )}
                     </div>
                   </div>
@@ -573,18 +567,18 @@ export function WebEstimator() {
 
       {/* ──────────── Result Card ──────────── */}
       {selectedType && estimate && (
-        <div className="bg-foreground text-background p-8 md:p-12 rounded-xl animate-fade-up">
+        <div className="bg-foreground text-black p-8 md:p-12 rounded-xl animate-fade-up">
           <div className="grid md:grid-cols-2 gap-10">
             {/* Left: Estimate */}
             <div>
-              <div className="font-mono-tech text-background/60 mb-2">
+              <div className="font-mono-tech text-black/60 mb-2">
                 Your Estimate
               </div>
               <h3 className="font-display text-4xl mb-1">
                 {selectedType.label}
               </h3>
               {selectedType.hasTiers && (
-                <span className="inline-block font-mono-tech text-sm text-background/50 mb-4 border border-background/20 rounded-full px-3 py-0.5">
+                <span className="inline-block font-mono-tech text-sm text-black/50 mb-4 border border-black/20 rounded-full px-3 py-0.5">
                   {TIER_CONFIG[selectedTier].label} tier
                 </span>
               )}
@@ -594,15 +588,15 @@ export function WebEstimator() {
                   {formatCurrency(estimate.min, currency)} –{" "}
                   {formatCurrency(estimate.max, currency)}
                 </div>
-                <div className="text-background/80 font-mono-tech">
+                <div className="text-black/80 font-mono-tech">
                   {estimate.timelineMin} – {estimate.timelineMax} business days
                 </div>
               </div>
 
               {/* Maintenance line */}
               {selectedMaintenance && (
-                <div className="flex items-center gap-2 text-sm text-background/70 mb-4 bg-background/10 rounded-lg px-4 py-2">
-                  <Shield className="w-4 h-4 text-background/50" />
+                <div className="flex items-center gap-2 text-sm text-black/70 mb-4 bg-black/10 rounded-lg px-4 py-2">
+                  <Shield className="w-4 h-4 text-black/50" />
                   <span>
                     + {formatCurrency(selectedMaintenance.priceRangeNPR[0], currency)} –{" "}
                     {formatCurrency(selectedMaintenance.priceRangeNPR[1], currency)}/mo
@@ -612,7 +606,7 @@ export function WebEstimator() {
               )}
 
               {/* Payment terms */}
-              <div className="text-sm text-background/50 mb-4 space-y-1">
+              <div className="text-sm text-black/50 mb-4 space-y-1">
                 <p className="italic">
                   Indicative only. Final pricing confirmed after a discovery call.
                 </p>
@@ -625,13 +619,13 @@ export function WebEstimator() {
                 <Link
                   to="/contact"
                   search={{ service: selectedType.id }}
-                  className="bg-background text-foreground hover:bg-background/90 px-6 py-3 rounded-full text-sm font-medium inline-flex items-center gap-2 transition-colors"
+                  className="bg-black text-white hover:bg-black/90 px-6 py-3 rounded-full text-sm font-medium inline-flex items-center gap-2 transition-colors"
                 >
                   Start this project <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   to="/contact"
-                  className="text-sm text-background/80 hover:text-background transition-colors underline underline-offset-4"
+                  className="text-sm text-black/80 hover:text-black transition-colors underline underline-offset-4"
                 >
                   Talk to us instead
                 </Link>
@@ -641,7 +635,7 @@ export function WebEstimator() {
             {/* Right: Summary */}
             <div className="space-y-6">
               {/* Selected features */}
-              <div className="bg-background/10 rounded-lg p-6">
+              <div className="bg-black/10 rounded-lg p-6">
                 <h4 className="font-sans font-medium mb-4">
                   Your Configuration
                 </h4>
@@ -655,12 +649,12 @@ export function WebEstimator() {
                       return (
                         <li
                           key={f.id}
-                          className="text-sm text-background/80 flex items-start gap-2"
+                          className="text-sm text-black/80 flex items-start gap-2"
                         >
-                          <Check className="w-4 h-4 text-background/60 shrink-0 mt-0.5" />
+                          <Check className="w-4 h-4 text-black/60 shrink-0 mt-0.5" />
                           <span className="flex-1">{f.label}</span>
                           {isIncluded && (
-                            <span className="text-[10px] font-mono-tech text-background/40">
+                            <span className="text-[10px] font-mono-tech text-black/40">
                               included
                             </span>
                           )}
@@ -668,8 +662,8 @@ export function WebEstimator() {
                       );
                     })}
                   {additionalPages > 0 && (
-                    <li className="text-sm text-background/80 flex items-start gap-2">
-                      <Plus className="w-4 h-4 text-background/60 shrink-0 mt-0.5" />
+                    <li className="text-sm text-black/80 flex items-start gap-2">
+                      <Plus className="w-4 h-4 text-black/60 shrink-0 mt-0.5" />
                       {additionalPages} additional page
                       {additionalPages !== 1 ? "s" : ""}
                     </li>
@@ -678,17 +672,17 @@ export function WebEstimator() {
               </div>
 
               {/* Always included */}
-              <div className="bg-background/5 rounded-lg p-6">
-                <h4 className="font-sans font-medium mb-3 text-sm text-background/60">
+              <div className="bg-black/5 rounded-lg p-6">
+                <h4 className="font-sans font-medium mb-3 text-sm text-black/60">
                   Always Included
                 </h4>
                 <ul className="space-y-1.5">
                   {includedItems.map((item, i) => (
                     <li
                       key={i}
-                      className="text-xs text-background/50 flex items-start gap-2"
+                      className="text-xs text-black/50 flex items-start gap-2"
                     >
-                      <Check className="w-3 h-3 text-background/30 shrink-0 mt-0.5" />
+                      <Check className="w-3 h-3 text-black/30 shrink-0 mt-0.5" />
                       {renderIncludedItem(item)}
                     </li>
                   ))}

@@ -84,7 +84,7 @@ function InsightsPage() {
 
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-6 md:px-10">
-          <div className="space-y-px bg-border">
+          <div className="divide-y divide-border border border-border rounded-3xl overflow-hidden shadow-2xl relative z-20">
             {posts.map((p, idx) => (
               <Link
                 key={p.title}

@@ -153,7 +153,7 @@ function ContactPage() {
                         onClick={() => togglePick(s)}
                         className={`px-4 py-2 rounded-full text-sm border transition-all ${
                           picked.includes(s)
-                            ? "bg-foreground text-background border-foreground"
+                            ? "bg-foreground text-black border-foreground"
                             : "hairline text-muted-foreground hover:text-foreground hover:border-foreground/40"
                         }`}
                       >
@@ -175,7 +175,7 @@ function ContactPage() {
                           onChange={() => setCurrency(c)}
                           className="peer sr-only"
                         />
-                        <span className="px-4 py-2 rounded-full text-sm border hairline text-muted-foreground hover:text-foreground hover:border-foreground/40 peer-checked:bg-foreground peer-checked:text-background peer-checked:border-foreground inline-block transition-all">
+                        <span className="px-4 py-2 rounded-full text-sm border hairline text-muted-foreground hover:text-foreground hover:border-foreground/40 peer-checked:bg-foreground peer-checked:text-black peer-checked:border-foreground inline-block transition-all">
                           {c}
                         </span>
                       </label>
@@ -188,7 +188,7 @@ function ContactPage() {
                     {budgetOptionsByCurrency[currency].map((b) => (
                       <label key={b} className="cursor-pointer">
                         <input type="radio" name="budget" value={b} className="peer sr-only" />
-                        <span className="px-4 py-2 rounded-full text-sm border hairline text-muted-foreground hover:text-foreground hover:border-foreground/40 peer-checked:bg-foreground peer-checked:text-background peer-checked:border-foreground inline-block transition-all">
+                        <span className="px-4 py-2 rounded-full text-sm border hairline text-muted-foreground hover:text-foreground hover:border-foreground/40 peer-checked:bg-foreground peer-checked:text-black peer-checked:border-foreground inline-block transition-all">
                           {b}
                         </span>
                       </label>

@@ -82,7 +82,7 @@ function InvestmentGuidePage() {
               </p>
             </div>
             
-            <div className="grid md:grid-cols-3 gap-px bg-border border hairline">
+            <div className="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border border border-border rounded-3xl overflow-hidden shadow-2xl relative z-20">
               {/* AI & Automation */}
               <div className="bg-background">
                 <CustomQuoteCard

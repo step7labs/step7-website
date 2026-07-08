@@ -87,7 +87,7 @@ function WorkPage() {
               onClick={() => setFilter(f)}
               className={`px-4 py-2 rounded-full text-sm border transition-all ${
                 filter === f
-                  ? "bg-foreground text-background border-foreground"
+                  ? "bg-foreground text-black border-foreground"
                   : "hairline text-muted-foreground hover:text-foreground hover:border-foreground/40"
               }`}
             >

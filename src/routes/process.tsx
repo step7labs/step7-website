@@ -76,7 +76,7 @@ function ProcessPage() {
 
       <section className="py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-6 md:px-10">
-          <ol className="space-y-px bg-border">
+          <ol className="divide-y divide-border border border-border rounded-3xl overflow-hidden shadow-2xl relative z-20">
             {steps.map((s) => (
               <li
                 key={s.n}

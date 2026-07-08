@@ -89,7 +89,7 @@ function AboutPage() {
             Two founders. One studio. Trusted collaborators.
           </h2>
 
-          <div className="mt-16 grid md:grid-cols-2 gap-px bg-border">
+          <div className="mt-16 grid md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-border border border-border rounded-3xl overflow-hidden shadow-2xl relative z-20">
             {[
               {
                 n: "Founder · Design",
