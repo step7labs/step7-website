@@ -30,12 +30,12 @@ export function useCursorScroll(sectionRef: React.RefObject<HTMLElement | null>)
     // Track scroll & visibility
     const handleScroll = () => {
       if (!sectionRef.current) return;
-      
+
       // Calculate how far down we've scrolled relative to the section's height
       // We want scrollProgress = 0 at top, 1 when section is completely scrolled out of view.
       const rect = sectionRef.current.getBoundingClientRect();
       const scrollY = window.scrollY;
-      
+
       // We assume the section starts at the top of the page.
       // If the page is scrolled such that scrollY = rect.height, progress = 1
       const progress = Math.max(0, Math.min(1, scrollY / rect.height));
@@ -43,7 +43,7 @@ export function useCursorScroll(sectionRef: React.RefObject<HTMLElement | null>)
       state.current.inView = progress < 1;
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
-    
+
     // Initial call
     handleScroll();
 
@@ -70,7 +70,7 @@ export function useCursorScroll(sectionRef: React.RefObject<HTMLElement | null>)
     // Lerp cursor
     state.current.cursorX += (state.current.targetCursorX - state.current.cursorX) * lerpFactor;
     state.current.cursorY += (state.current.targetCursorY - state.current.cursorY) * lerpFactor;
-    
+
     return state.current;
   }, []);
 

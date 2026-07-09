@@ -41,7 +41,8 @@ export function HeroAnimation({ sectionRef }: HeroAnimationProps) {
     const primary = rootStyles.getPropertyValue("--brand-primary").trim() || "#F9F9F9";
     const secondary = rootStyles.getPropertyValue("--brand-secondary").trim() || "#AFAFAF";
     const accent = rootStyles.getPropertyValue("--brand-accent").trim() || "#6B6B6B";
-    const lineMuted = rootStyles.getPropertyValue("--line-muted").trim() || "rgba(249, 249, 249, 0.12)";
+    const lineMuted =
+      rootStyles.getPropertyValue("--line-muted").trim() || "rgba(249, 249, 249, 0.12)";
     const pulseColor = rootStyles.getPropertyValue("--pulse-color").trim() || "#FFFFFF";
 
     const colors = [primary, secondary, accent];
@@ -56,16 +57,16 @@ export function HeroAnimation({ sectionRef }: HeroAnimationProps) {
       const padding = 200;
       const nodeCount = Math.min(Math.floor((width * height) / 7000), 180);
       nodes = [];
-      
+
       // Minimum distance between nodes to ensure even distribution (no clumps)
       const minSpawnDistSq = 60 * 60;
 
       let attempts = 0;
       while (nodes.length < nodeCount && attempts < nodeCount * 10) {
         attempts++;
-        const ox = (Math.random() * (width + padding * 2)) - padding;
-        const oy = (Math.random() * (height + padding * 2)) - padding;
-        
+        const ox = Math.random() * (width + padding * 2) - padding;
+        const oy = Math.random() * (height + padding * 2) - padding;
+
         let tooClose = false;
         for (const n of nodes) {
           const dx = n.x - ox;
@@ -75,12 +76,12 @@ export function HeroAnimation({ sectionRef }: HeroAnimationProps) {
             break;
           }
         }
-        
+
         if (tooClose) continue;
 
         // Neural Network / Constellation hybrid: mostly 2 connections (constellation), some 3-4 (neural hubs)
         const rand = Math.random();
-        const maxConnections = rand > 0.85 ? 4 : (rand > 0.6 ? 3 : 2);
+        const maxConnections = rand > 0.85 ? 4 : rand > 0.6 ? 3 : 2;
         const isGlowing = Math.random() > 0.8; // 20% of stars get a strong glowing twinkle
 
         nodes.push({
@@ -105,23 +106,27 @@ export function HeroAnimation({ sectionRef }: HeroAnimationProps) {
       if (parent) {
         const newWidth = parent.clientWidth;
         const newHeight = parent.clientHeight;
-        
-        if (Math.abs(width - newWidth) < 50 && Math.abs(height - newHeight) < 50 && nodes.length > 0) {
-            return;
+
+        if (
+          Math.abs(width - newWidth) < 50 &&
+          Math.abs(height - newHeight) < 50 &&
+          nodes.length > 0
+        ) {
+          return;
         }
 
         width = newWidth;
         height = newHeight;
         const dpr = Math.min(window.devicePixelRatio || 1, 2);
-        
+
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
-            canvas.width = width * dpr;
-            canvas.height = height * dpr;
-            ctx.scale(dpr, dpr);
-            canvas.style.width = `${width}px`;
-            canvas.style.height = `${height}px`;
-            initNodes();
+          canvas.width = width * dpr;
+          canvas.height = height * dpr;
+          ctx.scale(dpr, dpr);
+          canvas.style.width = `${width}px`;
+          canvas.style.height = `${height}px`;
+          initNodes();
         }, 150);
       }
     };
@@ -137,13 +142,13 @@ export function HeroAnimation({ sectionRef }: HeroAnimationProps) {
       canvas.style.height = `${height}px`;
       initNodes();
     }
-    
+
     window.addEventListener("resize", handleResize);
 
     const spawnPulse = () => {
       if (nodes.length === 0) return;
       const fromNode = nodes[Math.floor(Math.random() * nodes.length)];
-      
+
       // Find a random connected node (we calculate nearby dynamically now)
       const nearby = [];
       const maxDist = 160;
@@ -180,7 +185,7 @@ export function HeroAnimation({ sectionRef }: HeroAnimationProps) {
       }
 
       ctx.clearRect(0, 0, width, height);
-      
+
       const globalAlpha = Math.max(0, 1 - state.scrollProgress * 1.5);
       ctx.globalAlpha = globalAlpha;
 
@@ -190,7 +195,7 @@ export function HeroAnimation({ sectionRef }: HeroAnimationProps) {
       // Use targetCursor instead of lerped cursor for physics to ensure instant, 100% reliable avoidance
       const cursorPx = state.targetCursorX * window.innerWidth;
       const cursorPy = state.targetCursorY * window.innerHeight;
-      
+
       // Slightly increased cursor interaction so it feels more responsive
       const maxRepelDist = 140;
       const avoidanceRadius = 60;
@@ -204,17 +209,29 @@ export function HeroAnimation({ sectionRef }: HeroAnimationProps) {
       // Update physics for nodes
       for (let i = 0; i < nodes.length; i++) {
         const node = nodes[i];
-        
+
         // Drift the base position (the resting spot in the constellation)
         node.baseX += globalDriftX;
         node.baseY += globalDriftY;
-        
+
         // Wrap base position around edges to create infinite flow
-        if (node.baseX < -padding) { node.baseX += width + padding * 2; node.x += width + padding * 2; }
-        if (node.baseX > width + padding) { node.baseX -= width + padding * 2; node.x -= width + padding * 2; }
-        if (node.baseY < -padding) { node.baseY += height + padding * 2; node.y += height + padding * 2; }
-        if (node.baseY > height + padding) { node.baseY -= height + padding * 2; node.y -= height + padding * 2; }
-        
+        if (node.baseX < -padding) {
+          node.baseX += width + padding * 2;
+          node.x += width + padding * 2;
+        }
+        if (node.baseX > width + padding) {
+          node.baseX -= width + padding * 2;
+          node.x -= width + padding * 2;
+        }
+        if (node.baseY < -padding) {
+          node.baseY += height + padding * 2;
+          node.y += height + padding * 2;
+        }
+        if (node.baseY > height + padding) {
+          node.baseY -= height + padding * 2;
+          node.y -= height + padding * 2;
+        }
+
         // Organic wander around the base position
         const targetX = node.baseX + Math.sin(time + node.phase) * 20;
         const targetY = node.baseY + Math.cos(time + node.phase * 1.5) * 20;
@@ -227,7 +244,7 @@ export function HeroAnimation({ sectionRef }: HeroAnimationProps) {
         const dx = node.x - cursorPx;
         const dy = node.y - cursorPy;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        
+
         if (dist < avoidanceRadius && dist > 0) {
           const pushDist = avoidanceRadius - dist;
           node.x += (dx / dist) * pushDist;
@@ -241,8 +258,8 @@ export function HeroAnimation({ sectionRef }: HeroAnimationProps) {
         }
 
         // Apply friction
-        node.vx *= 0.90;
-        node.vy *= 0.90;
+        node.vx *= 0.9;
+        node.vy *= 0.9;
 
         // Update actual position
         node.x += node.vx;
@@ -252,13 +269,13 @@ export function HeroAnimation({ sectionRef }: HeroAnimationProps) {
       // Draw edges (calculated dynamically every frame to form true constellations)
       ctx.lineWidth = 1;
       const maxDistSq = 140 * 140;
-      
+
       // Store drawn lines to prevent double drawing and opacity stacking
       const drawnLines = new Set<string>();
 
       for (let i = 0; i < nodes.length; i++) {
         const n1 = nodes[i];
-        
+
         // Find closest neighbors
         const neighbors = [];
         for (let j = 0; j < nodes.length; j++) {
@@ -271,7 +288,7 @@ export function HeroAnimation({ sectionRef }: HeroAnimationProps) {
             neighbors.push({ idx: j, node: n2, distSq });
           }
         }
-        
+
         // Sort by distance and connect up to node's maxConnections
         neighbors.sort((a, b) => a.distSq - b.distSq);
         const closestNeighbors = neighbors.slice(0, n1.maxConnections);
@@ -279,16 +296,16 @@ export function HeroAnimation({ sectionRef }: HeroAnimationProps) {
         for (const neighbor of closestNeighbors) {
           const n2 = neighbor.node;
           const lineId = i < neighbor.idx ? `${i}-${neighbor.idx}` : `${neighbor.idx}-${i}`;
-          
+
           if (!drawnLines.has(lineId)) {
             drawnLines.add(lineId);
-            
+
             const distanceRatio = Math.sqrt(neighbor.distSq) / 140;
             const edgeOpacity = 1 - Math.pow(distanceRatio, 3);
-            
+
             ctx.globalAlpha = globalAlpha * edgeOpacity;
             ctx.strokeStyle = "rgba(249, 249, 249, 0.16)"; // slightly dimmer
-            
+
             ctx.beginPath();
             ctx.moveTo(n1.x, n1.y);
             ctx.lineTo(n2.x, n2.y);
@@ -317,17 +334,17 @@ export function HeroAnimation({ sectionRef }: HeroAnimationProps) {
         ctx.shadowBlur = 12;
         ctx.shadowColor = pulseColor;
         ctx.fill();
-        ctx.shadowBlur = 0; 
+        ctx.shadowBlur = 0;
       }
 
       // Draw nodes
       for (let i = 0; i < nodes.length; i++) {
         const node = nodes[i];
-        
+
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.size + (node.isGlowing ? 0.5 : 0), 0, Math.PI * 2);
         ctx.fillStyle = node.color;
-        
+
         if (node.isGlowing) {
           // Twinkling effect
           const twinkle = Math.sin(time * 3 + node.phase) * 0.5 + 0.5;
@@ -338,7 +355,7 @@ export function HeroAnimation({ sectionRef }: HeroAnimationProps) {
           ctx.shadowBlur = 0;
           ctx.globalAlpha = globalAlpha * 0.6;
         }
-        
+
         ctx.fill();
         ctx.shadowBlur = 0;
       }

@@ -13,6 +13,8 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "../components/site/Header";
 import { Footer } from "../components/site/Footer";
+import { DigitalThread } from "../components/site/DigitalThread";
+import { NightSkyBackground } from "../components/site/NightSkyBackground";
 
 function NotFoundComponent() {
   return (
@@ -24,7 +26,9 @@ function NotFoundComponent() {
           The page you're looking for doesn't exist.
         </p>
         <div className="mt-8">
-          <Link to="/" className="btn-primary">Back to home</Link>
+          <Link to="/" className="btn-primary">
+            Back to home
+          </Link>
         </div>
       </div>
     </div>
@@ -42,17 +46,20 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="font-display text-3xl">Something went wrong</h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Please try refreshing the page.
-        </p>
+        <p className="mt-2 text-sm text-muted-foreground">Please try refreshing the page.</p>
         <div className="mt-6 flex justify-center gap-3">
           <button
-            onClick={() => { router.invalidate(); reset(); }}
+            onClick={() => {
+              router.invalidate();
+              reset();
+            }}
             className="btn-primary"
           >
             Try again
           </button>
-          <a href="/" className="btn-ghost">Go home</a>
+          <a href="/" className="btn-ghost">
+            Go home
+          </a>
         </div>
       </div>
     </div>
@@ -116,9 +123,20 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen bg-background text-foreground antialiased flex flex-col">
+      <div className="min-h-screen bg-background text-foreground antialiased flex flex-col relative overflow-hidden">
+        {/* Animated Mesh Gradient Background */}
+        <div className="fixed inset-0 pointer-events-none -z-10 will-change-transform">
+          <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] max-w-[800px] max-h-[800px] rounded-full bg-purple-900/40 mix-blend-screen filter blur-[80px] animate-blob" />
+          <div className="absolute top-[20%] right-[-10%] w-[45vw] h-[45vw] max-w-[700px] max-h-[700px] rounded-full bg-blue-900/30 mix-blend-screen filter blur-[70px] animate-blob animation-delay-2000" />
+          <div className="absolute bottom-[-10%] left-[20%] w-[60vw] h-[60vw] max-w-[900px] max-h-[900px] rounded-full bg-pink-900/20 mix-blend-screen filter blur-[90px] animate-blob animation-delay-4000" />
+        </div>
+
+        {/* Global Stargazing & Cloud Layer */}
+        <NightSkyBackground />
+
+        {/* <DigitalThread /> */}
         <Header />
-        <main className="flex-1">
+        <main className="flex-1 relative z-10">
           <Outlet />
         </main>
         <Footer />

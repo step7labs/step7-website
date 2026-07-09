@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const nav = [
+  { to: "/", label: "Home" },
   { to: "/services", label: "Services" },
   { to: "/work", label: "Work" },
   { to: "/investment-guide", label: "Investment" },
@@ -27,7 +28,7 @@ export function Header() {
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "backdrop-blur-xl bg-background/75 border-b hairline"
+          ? "backdrop-blur-xl bg-surface/30 border-b hairline"
           : "bg-transparent border-b border-transparent"
       }`}
     >
@@ -68,7 +69,7 @@ export function Header() {
       </div>
 
       {open && (
-        <div className="md:hidden border-t hairline bg-background/95 backdrop-blur-xl">
+        <div className="md:hidden border-t hairline bg-surface/80 backdrop-blur-3xl">
           <nav className="px-6 py-6 flex flex-col gap-4 text-base">
             {nav.map((n) => (
               <Link

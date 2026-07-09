@@ -38,38 +38,39 @@
 }
 
 :root {
-  --radius: 0.5rem;
-  /* Monochrome editorial palette */
-  --background: oklch(0.08 0 0);              /* near-black #0A0A0A */
-  --foreground: oklch(0.98 0 0);              /* near-white #FAFAFA */
-  --surface: oklch(0.12 0 0);                 /* #161616 */
-  --surface-2: oklch(0.16 0 0);               /* #1E1E1E */
-  --card: oklch(0.10 0 0);
+  --radius: 1rem;
+  /* iOS 26 Glassmorphism palette */
+  --background: transparent;
+  --foreground: oklch(0.98 0 0); /* near-white #FAFAFA */
+  --surface: oklch(0.2 0.05 250 / 8%);
+  --surface-2: oklch(0.3 0.05 250 / 12%);
+  --card: oklch(0.2 0.05 250 / 10%);
   --card-foreground: oklch(0.98 0 0);
-  --popover: oklch(0.10 0 0);
+  --popover: oklch(0.2 0.05 250 / 15%);
   --popover-foreground: oklch(0.98 0 0);
-  --primary: oklch(0.98 0 0);                 /* white as primary */
+  --primary: oklch(0.98 0 0); /* white as primary */
   --primary-foreground: oklch(0.08 0 0);
-  --secondary: oklch(0.20 0 0);
+  --secondary: oklch(0.3 0.05 250 / 20%);
   --secondary-foreground: oklch(0.98 0 0);
-  --muted: oklch(0.18 0 0);
-  --muted-foreground: oklch(0.62 0 0);        /* #888 */
+  --muted: oklch(0.3 0.05 250 / 15%);
+  --muted-foreground: oklch(0.7 0.02 250); /* slightly tinted grey */
   --accent: oklch(0.98 0 0);
   --accent-foreground: oklch(0.08 0 0);
   --destructive: oklch(0.6 0.22 25);
   --destructive-foreground: oklch(0.98 0 0);
-  --border: oklch(1 0 0 / 9%);
+  --border: oklch(1 0 0 / 15%);
   --input: oklch(1 0 0 / 12%);
   --ring: oklch(1 0 0 / 30%);
-  --hairline: oklch(1 0 0 / 9%);
+  --hairline: oklch(1 0 0 / 12%);
 }
 
 @layer base {
   * {
     border-color: var(--color-border);
   }
-  html, body {
-    background-color: var(--color-background);
+  html,
+  body {
+    background-color: #000; /* Deep black fallback */
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
@@ -78,6 +79,18 @@
   ::selection {
     background: var(--foreground);
     color: var(--background);
+  }
+  /* Apply glass blur globally to all surface blocks */
+  .bg-surface,
+  .bg-surface\/30,
+  .bg-surface\/50,
+  .bg-surface\/60,
+  .bg-background,
+  .bg-card,
+  .bg-border,
+  .bg-border\/50 {
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
   }
 }
 
@@ -96,17 +109,24 @@
 }
 
 @utility hairline {
-  border-color: rgba(255,255,255,0.09);
+  border-color: rgba(255, 255, 255, 0.09);
 }
 
 @utility surface-card {
   background: var(--surface);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 6px;
-  transition: border-color 0.4s ease, background 0.4s ease;
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 4px 24px -1px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+  transition:
+    border-color 0.4s ease,
+    background 0.4s ease,
+    transform 0.4s ease;
   &:hover {
-    border-color: rgba(255,255,255,0.18);
+    border-color: rgba(255, 255, 255, 0.25);
     background: var(--surface-2);
+    transform: translateY(-2px);
   }
 }
 
@@ -117,13 +137,15 @@
   padding: 0.85rem 1.4rem;
   border-radius: 9999px;
   background: var(--foreground);
-  color: var(--background);
+  color: #000;
   font-weight: 500;
   font-size: 0.875rem;
   letter-spacing: -0.01em;
-  transition: transform 0.3s ease, background 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
   &:hover {
-    background: rgba(255,255,255,0.88);
+    background: rgba(255, 255, 255, 0.88);
     transform: translateY(-1px);
   }
 }
@@ -134,15 +156,17 @@
   gap: 0.5rem;
   padding: 0.85rem 1.4rem;
   border-radius: 9999px;
-  border: 1px solid rgba(255,255,255,0.18);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   color: var(--foreground);
   font-weight: 500;
   font-size: 0.875rem;
   background: transparent;
-  transition: border-color 0.3s ease, background 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    background 0.3s ease;
   &:hover {
-    background: rgba(255,255,255,0.04);
-    border-color: rgba(255,255,255,0.4);
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.4);
   }
 }
 
@@ -159,13 +183,14 @@
   &::after {
     content: "";
     position: absolute;
-    left: 0; bottom: -2px;
+    left: 0;
+    bottom: -2px;
     width: 100%;
     height: 1px;
     background: currentColor;
     transform: scaleX(0);
     transform-origin: right;
-    transition: transform 0.4s cubic-bezier(0.7,0,0.2,1);
+    transition: transform 0.4s cubic-bezier(0.7, 0, 0.2, 1);
   }
   &:hover::after {
     transform: scaleX(1);
@@ -174,24 +199,61 @@
 }
 
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 @keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes blob {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
 }
 
-@utility animate-marquee { animation: marquee 50s linear infinite; }
-@utility animate-fade-up { animation: fade-up 0.9s cubic-bezier(0.2,0.7,0.2,1) both; }
-@utility animate-fade-in { animation: fade-in 1.2s ease both; }
+@utility animate-marquee {
+  animation: marquee 50s linear infinite;
+}
+@utility animate-fade-up {
+  animation: fade-up 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@utility animate-fade-in {
+  animation: fade-in 1.2s ease both;
+}
+@utility animate-blob {
+  animation: blob 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+}
+@utility animation-delay-2000 {
+  animation-delay: 2s;
+}
+@utility animation-delay-4000 {
+  animation-delay: 4s;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;

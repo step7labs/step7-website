@@ -13,10 +13,15 @@ import { Route as WorkRouteImport } from './routes/work'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ProcessRouteImport } from './routes/process'
 import { Route as InvestmentGuideRouteImport } from './routes/investment-guide'
-import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as InsightsIndexRouteImport } from './routes/insights.index'
+import { Route as InsightsWhyWeStoppedWritingCustomDashboardsRouteImport } from './routes/insights_.why-we-stopped-writing-custom-dashboards'
+import { Route as InsightsTheCaseAgainstTheAiAgencyRouteImport } from './routes/insights_.the-case-against-the-ai-agency'
+import { Route as InsightsPerformanceIsABrandValueRouteImport } from './routes/insights_.performance-is-a-brand-value'
+import { Route as InsightsDesigningForTrustInAnAiFirstProductRouteImport } from './routes/insights_.designing-for-trust-in-an-ai-first-product'
+import { Route as InsightsAWorkingBriefRouteImport } from './routes/insights_.a-working-brief'
 
 const WorkRoute = WorkRouteImport.update({
   id: '/work',
@@ -38,11 +43,6 @@ const InvestmentGuideRoute = InvestmentGuideRouteImport.update({
   path: '/investment-guide',
   getParentRoute: () => rootRouteImport,
 } as any)
-const InsightsRoute = InsightsRouteImport.update({
-  id: '/insights',
-  path: '/insights',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
@@ -58,37 +58,86 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const InsightsIndexRoute = InsightsIndexRouteImport.update({
+  id: '/insights/',
+  path: '/insights/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsWhyWeStoppedWritingCustomDashboardsRoute =
+  InsightsWhyWeStoppedWritingCustomDashboardsRouteImport.update({
+    id: '/insights_/why-we-stopped-writing-custom-dashboards',
+    path: '/insights/why-we-stopped-writing-custom-dashboards',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const InsightsTheCaseAgainstTheAiAgencyRoute =
+  InsightsTheCaseAgainstTheAiAgencyRouteImport.update({
+    id: '/insights_/the-case-against-the-ai-agency',
+    path: '/insights/the-case-against-the-ai-agency',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const InsightsPerformanceIsABrandValueRoute =
+  InsightsPerformanceIsABrandValueRouteImport.update({
+    id: '/insights_/performance-is-a-brand-value',
+    path: '/insights/performance-is-a-brand-value',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const InsightsDesigningForTrustInAnAiFirstProductRoute =
+  InsightsDesigningForTrustInAnAiFirstProductRouteImport.update({
+    id: '/insights_/designing-for-trust-in-an-ai-first-product',
+    path: '/insights/designing-for-trust-in-an-ai-first-product',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const InsightsAWorkingBriefRoute = InsightsAWorkingBriefRouteImport.update({
+  id: '/insights_/a-working-brief',
+  path: '/insights/a-working-brief',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/insights': typeof InsightsRoute
   '/investment-guide': typeof InvestmentGuideRoute
   '/process': typeof ProcessRoute
   '/services': typeof ServicesRoute
   '/work': typeof WorkRoute
+  '/insights/a-working-brief': typeof InsightsAWorkingBriefRoute
+  '/insights/designing-for-trust-in-an-ai-first-product': typeof InsightsDesigningForTrustInAnAiFirstProductRoute
+  '/insights/performance-is-a-brand-value': typeof InsightsPerformanceIsABrandValueRoute
+  '/insights/the-case-against-the-ai-agency': typeof InsightsTheCaseAgainstTheAiAgencyRoute
+  '/insights/why-we-stopped-writing-custom-dashboards': typeof InsightsWhyWeStoppedWritingCustomDashboardsRoute
+  '/insights/': typeof InsightsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/insights': typeof InsightsRoute
   '/investment-guide': typeof InvestmentGuideRoute
   '/process': typeof ProcessRoute
   '/services': typeof ServicesRoute
   '/work': typeof WorkRoute
+  '/insights/a-working-brief': typeof InsightsAWorkingBriefRoute
+  '/insights/designing-for-trust-in-an-ai-first-product': typeof InsightsDesigningForTrustInAnAiFirstProductRoute
+  '/insights/performance-is-a-brand-value': typeof InsightsPerformanceIsABrandValueRoute
+  '/insights/the-case-against-the-ai-agency': typeof InsightsTheCaseAgainstTheAiAgencyRoute
+  '/insights/why-we-stopped-writing-custom-dashboards': typeof InsightsWhyWeStoppedWritingCustomDashboardsRoute
+  '/insights': typeof InsightsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/insights': typeof InsightsRoute
   '/investment-guide': typeof InvestmentGuideRoute
   '/process': typeof ProcessRoute
   '/services': typeof ServicesRoute
   '/work': typeof WorkRoute
+  '/insights_/a-working-brief': typeof InsightsAWorkingBriefRoute
+  '/insights_/designing-for-trust-in-an-ai-first-product': typeof InsightsDesigningForTrustInAnAiFirstProductRoute
+  '/insights_/performance-is-a-brand-value': typeof InsightsPerformanceIsABrandValueRoute
+  '/insights_/the-case-against-the-ai-agency': typeof InsightsTheCaseAgainstTheAiAgencyRoute
+  '/insights_/why-we-stopped-writing-custom-dashboards': typeof InsightsWhyWeStoppedWritingCustomDashboardsRoute
+  '/insights/': typeof InsightsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -96,42 +145,62 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
-    | '/insights'
     | '/investment-guide'
     | '/process'
     | '/services'
     | '/work'
+    | '/insights/a-working-brief'
+    | '/insights/designing-for-trust-in-an-ai-first-product'
+    | '/insights/performance-is-a-brand-value'
+    | '/insights/the-case-against-the-ai-agency'
+    | '/insights/why-we-stopped-writing-custom-dashboards'
+    | '/insights/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/contact'
-    | '/insights'
     | '/investment-guide'
     | '/process'
     | '/services'
     | '/work'
+    | '/insights/a-working-brief'
+    | '/insights/designing-for-trust-in-an-ai-first-product'
+    | '/insights/performance-is-a-brand-value'
+    | '/insights/the-case-against-the-ai-agency'
+    | '/insights/why-we-stopped-writing-custom-dashboards'
+    | '/insights'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/contact'
-    | '/insights'
     | '/investment-guide'
     | '/process'
     | '/services'
     | '/work'
+    | '/insights_/a-working-brief'
+    | '/insights_/designing-for-trust-in-an-ai-first-product'
+    | '/insights_/performance-is-a-brand-value'
+    | '/insights_/the-case-against-the-ai-agency'
+    | '/insights_/why-we-stopped-writing-custom-dashboards'
+    | '/insights/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
-  InsightsRoute: typeof InsightsRoute
   InvestmentGuideRoute: typeof InvestmentGuideRoute
   ProcessRoute: typeof ProcessRoute
   ServicesRoute: typeof ServicesRoute
   WorkRoute: typeof WorkRoute
+  InsightsAWorkingBriefRoute: typeof InsightsAWorkingBriefRoute
+  InsightsDesigningForTrustInAnAiFirstProductRoute: typeof InsightsDesigningForTrustInAnAiFirstProductRoute
+  InsightsPerformanceIsABrandValueRoute: typeof InsightsPerformanceIsABrandValueRoute
+  InsightsTheCaseAgainstTheAiAgencyRoute: typeof InsightsTheCaseAgainstTheAiAgencyRoute
+  InsightsWhyWeStoppedWritingCustomDashboardsRoute: typeof InsightsWhyWeStoppedWritingCustomDashboardsRoute
+  InsightsIndexRoute: typeof InsightsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -164,13 +233,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof InvestmentGuideRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/insights': {
-      id: '/insights'
-      path: '/insights'
-      fullPath: '/insights'
-      preLoaderRoute: typeof InsightsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/contact': {
       id: '/contact'
       path: '/contact'
@@ -192,6 +254,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/insights/': {
+      id: '/insights/'
+      path: '/insights'
+      fullPath: '/insights/'
+      preLoaderRoute: typeof InsightsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights_/why-we-stopped-writing-custom-dashboards': {
+      id: '/insights_/why-we-stopped-writing-custom-dashboards'
+      path: '/insights/why-we-stopped-writing-custom-dashboards'
+      fullPath: '/insights/why-we-stopped-writing-custom-dashboards'
+      preLoaderRoute: typeof InsightsWhyWeStoppedWritingCustomDashboardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights_/the-case-against-the-ai-agency': {
+      id: '/insights_/the-case-against-the-ai-agency'
+      path: '/insights/the-case-against-the-ai-agency'
+      fullPath: '/insights/the-case-against-the-ai-agency'
+      preLoaderRoute: typeof InsightsTheCaseAgainstTheAiAgencyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights_/performance-is-a-brand-value': {
+      id: '/insights_/performance-is-a-brand-value'
+      path: '/insights/performance-is-a-brand-value'
+      fullPath: '/insights/performance-is-a-brand-value'
+      preLoaderRoute: typeof InsightsPerformanceIsABrandValueRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights_/designing-for-trust-in-an-ai-first-product': {
+      id: '/insights_/designing-for-trust-in-an-ai-first-product'
+      path: '/insights/designing-for-trust-in-an-ai-first-product'
+      fullPath: '/insights/designing-for-trust-in-an-ai-first-product'
+      preLoaderRoute: typeof InsightsDesigningForTrustInAnAiFirstProductRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights_/a-working-brief': {
+      id: '/insights_/a-working-brief'
+      path: '/insights/a-working-brief'
+      fullPath: '/insights/a-working-brief'
+      preLoaderRoute: typeof InsightsAWorkingBriefRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -199,11 +303,19 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
-  InsightsRoute: InsightsRoute,
   InvestmentGuideRoute: InvestmentGuideRoute,
   ProcessRoute: ProcessRoute,
   ServicesRoute: ServicesRoute,
   WorkRoute: WorkRoute,
+  InsightsAWorkingBriefRoute: InsightsAWorkingBriefRoute,
+  InsightsDesigningForTrustInAnAiFirstProductRoute:
+    InsightsDesigningForTrustInAnAiFirstProductRoute,
+  InsightsPerformanceIsABrandValueRoute: InsightsPerformanceIsABrandValueRoute,
+  InsightsTheCaseAgainstTheAiAgencyRoute:
+    InsightsTheCaseAgainstTheAiAgencyRoute,
+  InsightsWhyWeStoppedWritingCustomDashboardsRoute:
+    InsightsWhyWeStoppedWritingCustomDashboardsRoute,
+  InsightsIndexRoute: InsightsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
