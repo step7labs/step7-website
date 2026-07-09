@@ -30,6 +30,7 @@ const projects = [
     year: "2026",
     metric: "React · Commerce",
     color: "from-zinc-700 to-zinc-900",
+    image: "/nbc-colorzone.png",
   },
   {
     name: "Bricks & Bolt Infra",
@@ -47,7 +48,7 @@ const projects = [
     year: "2024",
     metric: "Series A close",
     color: "from-zinc-800 to-black",
-    image: "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&q=80&w=1200",
+    image: "/aperture.png",
   },
   {
     name: "JSS Industries",
@@ -85,11 +86,10 @@ function WorkPage() {
             <button
               key={f}
               onClick={() => setFilter(f)}
-              className={`px-4 py-2 rounded-full text-sm border transition-all ${
-                filter === f
-                  ? "bg-foreground text-black border-foreground"
-                  : "hairline text-muted-foreground hover:text-foreground hover:border-foreground/40"
-              }`}
+              className={`px-4 py-2 rounded-full text-sm border transition-all ${filter === f
+                ? "bg-foreground text-black border-foreground"
+                : "hairline text-muted-foreground hover:text-foreground hover:border-foreground/40"
+                }`}
             >
               {f}
             </button>
