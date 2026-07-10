@@ -31,6 +31,7 @@ const projects = [
     metric: "React · Commerce",
     color: "from-zinc-700 to-zinc-900",
     image: "/nbc-colorzone.png",
+    link: "https://www.nbccolorzone.com",
   },
   {
     name: "Bricks & Bolt Infra",
@@ -40,6 +41,7 @@ const projects = [
     metric: "Next.js · WebGL",
     color: "from-neutral-700 to-neutral-900",
     image: "/bricks-and-bolt.png",
+    link: "https://www.bricksandbolt.com",
   },
   {
     name: "Apreture Cosmetics",
