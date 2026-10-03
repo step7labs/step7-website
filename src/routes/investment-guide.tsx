@@ -91,7 +91,7 @@ function InvestmentGuidePage() {
                   categoryId="ai"
                   title="AI & Automation"
                   description="Pragmatic AI features added where they move the needle, alongside internal tools and workflows that compound."
-                  startingPriceNPR={13000}
+                  startingPriceNPR={100000}
                   includedFeatures={[
                     "CRM / lead-management automation",
                     "Simple workflow automation (1-3 workflows)",
@@ -111,7 +111,7 @@ function InvestmentGuidePage() {
                   categoryId="software"
                   title="Custom Software"
                   description="Complex business logic translated into scalable architectures. We build bounded, logged-in-user products."
-                  startingPriceNPR={175000}
+                  startingPriceNPR={200000}
                   includedFeatures={[
                     "Mobile apps (basic MVP to mid-complexity)",
                     "SaaS platforms",
@@ -131,7 +131,7 @@ function InvestmentGuidePage() {
                   categoryId="branding"
                   title="Branding"
                   description="Identity work for digital-first companies. Marks, typography, voice, and motion principles."
-                  startingPriceNPR={12000}
+                  startingPriceNPR={80000}
                   includedFeatures={[
                     "Logo design",
                     "Full brand identity (colors, fonts, templates)",

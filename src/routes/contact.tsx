@@ -1,12 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { PageHero } from "../components/site/PageHero";
 import { ArrowRight } from "lucide-react";
+import { PRICING_DATA } from "../config/pricing-data";
+
+type ContactSearch = { service?: string; currency?: Currency; estimate?: string };
 
 export const Route = createFileRoute("/contact")({
-  validateSearch: (search: Record<string, unknown>): { service?: string } => {
+  validateSearch: (search: Record<string, unknown>): ContactSearch => {
+    const currency = search.currency as Currency;
     return {
       service: (search.service as string) || undefined,
+      currency: currencies.includes(currency) ? currency : undefined,
+      estimate:
+        typeof search.estimate === "string" && search.estimate
+          ? search.estimate.slice(0, 2000)
+          : undefined,
     };
   },
   head: () => ({
@@ -40,13 +49,25 @@ const serviceIdMap: Record<string, string> = {
   web: "Web Design & Development",
   ai: "AI & Automation",
   software: "Custom Software",
-  branding: "Branding"
+  branding: "Branding",
+  // Older estimator links sent the project type itself.
+  ...Object.fromEntries(PRICING_DATA.projectTypes.map((pt) => [pt.id, "Web Design & Development"])),
 };
+
+const CONTACT_EMAIL = "hello@step7labs.com";
+
+// Inquiries are delivered through Web3Forms when an access key is configured (set
+// VITE_WEB3FORMS_ACCESS_KEY in the hosting environment variables before building).
+// Without one, the visitor's email app opens with the message filled in, so nothing is lost.
+const WEB3FORMS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY as string | undefined;
+
+type SendState = "idle" | "sending" | "sent" | "mailto" | "error";
 
 function ContactPage() {
   const search = Route.useSearch();
-  const [sent, setSent] = useState(false);
-  const [currency, setCurrency] = useState<Currency>("USD");
+  const [state, setState] = useState<SendState>("idle");
+  const [mailtoHref, setMailtoHref] = useState("");
+  const [currency, setCurrency] = useState<Currency>(search.currency ?? "USD");
   const [picked, setPicked] = useState<string[]>(() => {
     if (search.service && serviceIdMap[search.service]) {
       return [serviceIdMap[search.service]];
@@ -56,6 +77,58 @@ function ContactPage() {
 
   const togglePick = (s: string) =>
     setPicked((p) => (p.includes(s) ? p.filter((x) => x !== s) : [...p, s]));
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const get = (k: string) => String(data.get(k) ?? "").trim();
+    const name = get("name");
+    const subject = `New inquiry from ${name}${get("company") ? ` (${get("company")})` : ""}`;
+    const details = [
+      `Name: ${name}`,
+      `Email: ${get("email")}`,
+      get("company") ? `Company: ${get("company")}` : null,
+      picked.length > 0 ? `Services: ${picked.join(", ")}` : null,
+      get("budget") ? `Budget: ${get("budget")} (${currency})` : null,
+    ].filter(Boolean);
+    const body = [
+      details.join("\n"),
+      get("message"),
+      search.estimate ? `--- Estimate from the website ---\n${search.estimate}` : null,
+    ]
+      .filter(Boolean)
+      .join("\n\n");
+
+    const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setMailtoHref(mailto);
+
+    if (!WEB3FORMS_KEY) {
+      window.location.href = mailto;
+      setState("mailto");
+      return;
+    }
+
+    setState("sending");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          subject,
+          from_name: "step7labs.com",
+          name,
+          email: get("email"),
+          replyto: get("email"),
+          message: body,
+        }),
+      });
+      const json = (await res.json().catch(() => ({}))) as { success?: boolean };
+      setState(res.ok && json.success ? "sent" : "error");
+    } catch {
+      setState("error");
+    }
+  };
 
   return (
     <>
@@ -102,21 +175,43 @@ function ContactPage() {
 
           {/* Form */}
           <div className="lg:col-span-8">
-            {sent ? (
-              <div className="border hairline rounded-sm p-12 text-center">
+            {state === "sent" ? (
+              <div role="status" className="border hairline rounded-sm p-12 text-center">
                 <div className="section-label mb-4">/ Received</div>
                 <h3 className="font-display text-3xl md:text-4xl tracking-[-0.01em]">
                   Thanks — we'll be in touch shortly.
                 </h3>
               </div>
+            ) : state === "mailto" ? (
+              <div role="status" className="border hairline rounded-sm p-12 text-center">
+                <div className="section-label mb-4">/ Almost there</div>
+                <h3 className="font-display text-3xl md:text-4xl tracking-[-0.01em]">
+                  Your email app should open with your message ready.
+                </h3>
+                <p className="mt-4 text-foreground/70">
+                  Press send there to reach us. Nothing opened?{" "}
+                  <a href={mailtoHref} className="underline underline-offset-4">
+                    Open it again
+                  </a>{" "}
+                  or write to{" "}
+                  <a href={`mailto:${CONTACT_EMAIL}`} className="underline underline-offset-4">
+                    {CONTACT_EMAIL}
+                  </a>
+                  .
+                </p>
+              </div>
             ) : (
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setSent(true);
-                }}
-                className="space-y-10"
-              >
+              <form onSubmit={handleSubmit} className="space-y-10">
+                {search.estimate && (
+                  <div className="border hairline rounded-lg p-6 bg-surface/30">
+                    <div className="font-mono-tech text-muted-foreground mb-3">
+                      Your estimate (sent with your message)
+                    </div>
+                    <p className="whitespace-pre-line text-sm text-foreground/85 leading-relaxed">
+                      {search.estimate}
+                    </p>
+                  </div>
+                )}
                 <Field label="01 / Your name">
                   <input
                     required
@@ -207,9 +302,19 @@ function ContactPage() {
                 </Field>
 
                 <div className="pt-4">
-                  <button type="submit" className="btn-primary">
-                    Send inquiry <ArrowRight className="w-4 h-4" />
+                  <button type="submit" className="btn-primary" disabled={state === "sending"}>
+                    {state === "sending" ? "Sending…" : "Send inquiry"}{" "}
+                    <ArrowRight className="w-4 h-4" />
                   </button>
+                  {state === "error" && (
+                    <p role="alert" className="mt-4 text-sm text-foreground/80">
+                      Something went wrong sending your message.{" "}
+                      <a href={mailtoHref} className="underline underline-offset-4">
+                        Send it by email instead
+                      </a>{" "}
+                      — it's already written for you.
+                    </p>
+                  )}
                 </div>
               </form>
             )}

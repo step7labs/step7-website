@@ -28,6 +28,10 @@ export type Feature = {
   priceDeltaNPR: number;
   defaultChecked: boolean;
   includedInTiers?: Tier[];    // If the selected tier is in this list → included free, auto-checked
+  requires?: string[];         // Feature ids that must also be selected (auto-added together)
+  // "pages" features count against the page allowance (basePageCount). Where a per-page price
+  // exists, pages are free until the allowance is used and then cost that per-page price, so
+  // priceDeltaNPR is only used for page features on projects without a per-page price.
   category: "pages" | "features" | "addons";
 };
 
@@ -141,8 +145,6 @@ export const PRICING_DATA = {
         { id: "advanced-seo",label: "Advanced SEO + Schema",       priceDeltaNPR: 5000, defaultChecked: false, includedInTiers: ["modern"], category: "features" },
         { id: "cwv",         label: "Page-speed optimization",     priceDeltaNPR: 3000, defaultChecked: false, includedInTiers: ["modern"], category: "features" },
         { id: "gbp",         label: "Google Business Profile",     priceDeltaNPR: 2000, defaultChecked: false, includedInTiers: ["modern"], category: "features" },
-        // Add-ons
-        { id: "hosting",     label: "Hosting & domain setup",      priceDeltaNPR: 2500, defaultChecked: false, category: "addons" },
       ],
     },
 
@@ -166,7 +168,6 @@ export const PRICING_DATA = {
         { id: "testimonials",label: "Testimonials",  priceDeltaNPR: 3000, defaultChecked: false, includedInTiers: ["modern"], category: "pages" },
         { id: "resume",      label: "Resume / CV",   priceDeltaNPR: 2000, defaultChecked: false, category: "pages" },
         { id: "cms",         label: "CMS (self-editable)", priceDeltaNPR: 8000, defaultChecked: false, includedInTiers: ["modern"], category: "features" },
-        { id: "hosting",     label: "Hosting & domain setup", priceDeltaNPR: 2500, defaultChecked: false, category: "addons" },
       ],
     },
 
@@ -191,9 +192,8 @@ export const PRICING_DATA = {
         { id: "terms",         label: "Terms & Conditions",priceDeltaNPR: 1500, defaultChecked: false, category: "pages" },
         { id: "privacy",       label: "Privacy Policy",    priceDeltaNPR: 1500, defaultChecked: false, category: "pages" },
         { id: "analytics",     label: "Analytics setup",   priceDeltaNPR: 0,    defaultChecked: true, category: "features" },
-        { id: "seo",           label: "Basic SEO",         priceDeltaNPR: 2000, defaultChecked: false, category: "features" },
+        { id: "seo",           label: "Basic SEO",         priceDeltaNPR: 0,    defaultChecked: true, category: "features" },
         { id: "mailchimp",     label: "Newsletter capture",priceDeltaNPR: 2000, defaultChecked: false, category: "features" },
-        { id: "hosting",       label: "Hosting & domain setup", priceDeltaNPR: 2500, defaultChecked: false, category: "addons" },
       ],
     },
 
@@ -233,7 +233,6 @@ export const PRICING_DATA = {
         { id: "seo",        label: "Product page SEO",     priceDeltaNPR: 5000, defaultChecked: false, category: "features" },
         // Add-ons
         { id: "cms",        label: "CMS (self-editable)",  priceDeltaNPR: 8000, defaultChecked: false, category: "addons" },
-        { id: "hosting",    label: "Hosting & domain setup",priceDeltaNPR: 2500, defaultChecked: false, category: "addons" },
       ],
     },
 
@@ -264,8 +263,6 @@ export const PRICING_DATA = {
         { id: "qr-menu",    label: "QR Menu",             priceDeltaNPR: 3000, defaultChecked: false, category: "features" },
         { id: "delivery",   label: "Delivery integration", priceDeltaNPR: 6000, defaultChecked: false, category: "features" },
         { id: "cms",        label: "CMS (self-editable)",  priceDeltaNPR: 8000, defaultChecked: false, includedInTiers: ["modern"], category: "features" },
-        // Add-ons
-        { id: "hosting",    label: "Hosting & domain setup", priceDeltaNPR: 2500, defaultChecked: false, category: "addons" },
       ],
     },
 
@@ -292,10 +289,8 @@ export const PRICING_DATA = {
         { id: "offers",        label: "Special Offers",     priceDeltaNPR: 3000,  defaultChecked: false, category: "pages" },
         // Features
         { id: "booking",      label: "Booking engine",         priceDeltaNPR: 12000, defaultChecked: false, category: "features" },
-        { id: "availability", label: "Availability calendar",   priceDeltaNPR: 5000,  defaultChecked: false, category: "features" },
+        { id: "availability", label: "Availability calendar",   priceDeltaNPR: 5000,  defaultChecked: false, requires: ["booking"], category: "features" },
         { id: "cms",           label: "CMS (self-editable)",    priceDeltaNPR: 8000,  defaultChecked: false, includedInTiers: ["modern"], category: "features" },
-        // Add-ons
-        { id: "hosting",      label: "Hosting & domain setup",  priceDeltaNPR: 2500,  defaultChecked: false, category: "addons" },
       ],
     },
 
@@ -324,8 +319,6 @@ export const PRICING_DATA = {
         { id: "mortgage",  label: "Mortgage Calculator",   priceDeltaNPR: 12000, defaultChecked: false, category: "features" },
         { id: "advanced-search",label:"Advanced Filters",  priceDeltaNPR: 5000, defaultChecked: false, category: "features" },
         { id: "cms",       label: "CMS (self-editable)",   priceDeltaNPR: 8000, defaultChecked: false, includedInTiers: ["modern"], category: "features" },
-        // Add-ons
-        { id: "hosting",   label: "Hosting & domain setup",priceDeltaNPR: 2500, defaultChecked: false, category: "addons" },
       ],
     },
 
@@ -349,7 +342,6 @@ export const PRICING_DATA = {
         { id: "newsletter",  label: "Newsletter integration", priceDeltaNPR: 3000, defaultChecked: false, includedInTiers: ["modern"], category: "features" },
         { id: "monetization",label: "Ad Placement setup", priceDeltaNPR: 4000, defaultChecked: false, category: "features" },
         { id: "cms",         label: "CMS (self-editable)", priceDeltaNPR: 8000, defaultChecked: true, includedInTiers: ["basic", "modern"], category: "features" },
-        { id: "hosting",     label: "Hosting & domain setup", priceDeltaNPR: 2500, defaultChecked: false, category: "addons" },
       ],
     },
     
@@ -375,7 +367,6 @@ export const PRICING_DATA = {
         { id: "enrollment",  label: "Student Enrollment & Checkout", priceDeltaNPR: 0, defaultChecked: true, category: "features" },
         { id: "quizzes",     label: "Quizzes & Certificates", priceDeltaNPR: 12000, defaultChecked: false, category: "features" },
         { id: "memberships", label: "Paid Subscriptions", priceDeltaNPR: 15000, defaultChecked: false, category: "features" },
-        { id: "hosting",     label: "Hosting & domain setup", priceDeltaNPR: 2500, defaultChecked: false, category: "addons" },
       ],
     },
 
@@ -399,7 +390,6 @@ export const PRICING_DATA = {
         { id: "blog",        label: "News / Updates", priceDeltaNPR: 5000, defaultChecked: false, includedInTiers: ["modern"], category: "pages" },
         { id: "donations",   label: "Online Donations (eSewa/Khalti)", priceDeltaNPR: 8000, defaultChecked: false, category: "features" },
         { id: "cms",         label: "CMS (self-editable)", priceDeltaNPR: 8000, defaultChecked: false, includedInTiers: ["modern"], category: "features" },
-        { id: "hosting",     label: "Hosting & domain setup", priceDeltaNPR: 2500, defaultChecked: false, category: "addons" },
       ],
     },
 
@@ -425,7 +415,6 @@ export const PRICING_DATA = {
         { id: "payments",    label: "Paid Listings / Checkout",  priceDeltaNPR: 12000, defaultChecked: false, category: "features" },
         { id: "reviews",     label: "Reviews & Ratings",         priceDeltaNPR: 8000, defaultChecked: false, category: "features" },
         { id: "maps",        label: "Interactive Maps",          priceDeltaNPR: 6000, defaultChecked: false, category: "features" },
-        { id: "hosting",     label: "Hosting & domain setup",    priceDeltaNPR: 2500, defaultChecked: false, category: "addons" },
       ],
     },
 

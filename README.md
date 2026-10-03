@@ -50,6 +50,38 @@ A project with **no `link`** sends visitors to the Contact page when clicked.
 
 Written in plain English so it is easy to understand later. Every item below is also a commit in GitHub's history.
 
+### Not live yet — price estimator fixes (branch `estimator-fixes`)
+
+These changes are on the `estimator-fixes` branch only. They are not on `main` or the live site until they are approved and merged.
+
+**Contact form now actually sends.** Before this, the form showed "Thanks" but sent nothing, so every inquiry was lost. Now:
+- If a Web3Forms access key is set (`VITE_WEB3FORMS_ACCESS_KEY` in Hostinger → Environment variables, then redeploy), messages are emailed to us.
+- Without a key, the visitor's email app opens with the whole message (and their estimate) already written, addressed to hello@step7labs.com.
+
+**Estimator → contact handoff.** "Start this project" now opens the contact page with "Web Design & Development" selected, the client's currency selected, and their full estimate shown and attached to the message.
+
+**New price rules** (decided by the owner on 3 Oct 2026):
+- *Price range:* the low end is the build as configured; the high end uses each project's own spread from the pricing data (for example Modern 45k–65k is ×1.44). So bigger projects get a proportionally bigger range. Numbers are rounded to friendly values. At default settings every project shows exactly the range set in `src/config/pricing-data.ts`.
+- *Hosting and Basic SEO are included:* the paid "Hosting & domain setup" add-on was removed everywhere, and Landing Page "Basic SEO" is now included, so the "Always included" list is true.
+- *Pages:* each plan's included pages are used first (Basic 5, Modern 10, Ecommerce 10, and so on); every page after that costs the plan's single per-page price. No more double charging.
+- *Starting prices:* the Investment Guide cards now match the homepage (AI NPR 1,00,000+, Custom Software NPR 2,00,000+, Branding NPR 80,000+).
+
+**Estimator usability fixes:**
+- Choices are kept when switching tier, re-clicking the same project, going back from the contact page, reloading, or switching homepage tabs.
+- A live price bar stays on screen at the bottom while picking options.
+- It now works fully with the keyboard and screen readers. Price changes are also read out.
+- "Modern would cost less" appears when a Basic build becomes pricier than Modern.
+- Extra pages are capped at 30, with a note to ask for a custom quote.
+- Availability calendar now automatically includes the Booking engine it needs.
+- The "No maintenance" option no longer looks selected when another option is chosen.
+- Core features of a project (e.g. a store's cart and checkout) can no longer be removed.
+- Pages beyond the included ones now add to the timeline too (about 1 day per 2 extra pages or paid add-ons).
+- Converted USD/INR prices are marked as approximate, with the exchange rate shown.
+
+**Small layout change:** the site's outer wrapper now uses `overflow: clip` instead of `overflow: hidden`. It looks the same, but it lets things like the live price bar stay on screen while scrolling.
+
+**Where the logic lives:** all estimator maths is now in `src/lib/estimate.ts`; prices and features are still in `src/config/pricing-data.ts`.
+
 ### 3 October 2026 — Version: "portfolio update" (Work page: 4 new projects, 2 redesigned)
 
 This was the first update to the site since July. Since then we built several new things, so they were added to the **Work** page.

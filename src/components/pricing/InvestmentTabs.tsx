@@ -42,7 +42,7 @@ export function InvestmentTabs() {
             categoryId="ai"
             title="AI & Automation"
             description="Pragmatic AI features added where they move the needle, alongside internal tools and workflows that compound. We help teams remove manual work without locking into rigid platforms."
-            startingPriceNPR={100000} // Placeholder
+            startingPriceNPR={100000}
             includedFeatures={[
               "Workflow Automation",
               "AI Integration",
@@ -59,7 +59,7 @@ export function InvestmentTabs() {
             categoryId="software"
             title="Custom Software"
             description="Complex business logic translated into scalable architectures. We build bounded, logged-in-user products designed for specific operational needs or multi-tenant audiences."
-            startingPriceNPR={200000} // Placeholder
+            startingPriceNPR={200000}
             includedFeatures={[
               "SaaS",
               "Platforms",
@@ -77,7 +77,7 @@ export function InvestmentTabs() {
             categoryId="branding"
             title="Branding"
             description="Identity work for digital-first companies. Marks, typography, voice, and motion principles — built to live as well in code as on a deck."
-            startingPriceNPR={80000} // Placeholder
+            startingPriceNPR={80000}
             includedFeatures={[
               "Identity systems", 
               "Naming & voice", 

@@ -123,7 +123,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="min-h-screen bg-background text-foreground antialiased flex flex-col relative overflow-hidden">
+      <div className="min-h-screen bg-background text-foreground antialiased flex flex-col relative overflow-clip">
         {/* Animated Mesh Gradient Background */}
         <div className="fixed inset-0 pointer-events-none -z-10 will-change-transform">
           <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] max-w-[800px] max-h-[800px] rounded-full bg-purple-900/40 mix-blend-screen filter blur-[80px] animate-blob" />
