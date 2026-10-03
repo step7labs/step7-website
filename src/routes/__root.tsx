@@ -8,6 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { MotionConfig } from "framer-motion";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -89,12 +90,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "theme-color", content: "#0A0A0A" },
     ],
     links: [
+      { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap",
+      },
+    ],
+    scripts: [
+      {
+        // Tells search engines who we are (shown in rich results / knowledge panels).
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Step7Labs",
+          url: "https://www.step7labs.com",
+          email: "hello@step7labs.com",
+          description:
+            "Digital product studio designing and engineering high-performance websites, web apps, and AI & automation.",
+        }),
       },
     ],
   }),
@@ -137,7 +154,10 @@ function RootComponent() {
         {/* <DigitalThread /> */}
         <Header />
         <main className="flex-1 relative z-10">
-          <Outlet />
+          {/* framer-motion animations follow the visitor's reduced-motion setting. */}
+          <MotionConfig reducedMotion="user">
+            <Outlet />
+          </MotionConfig>
         </main>
         <Footer />
       </div>

@@ -53,7 +53,7 @@
   --secondary: oklch(0.3 0.05 250 / 20%);
   --secondary-foreground: oklch(0.98 0 0);
   --muted: oklch(0.3 0.05 250 / 15%);
-  --muted-foreground: oklch(0.7 0.02 250); /* slightly tinted grey */
+  --muted-foreground: oklch(0.76 0.02 250); /* tinted grey; >= 4.5:1 on the darkest surfaces */
   --accent: oklch(0.98 0 0);
   --accent-foreground: oklch(0.08 0 0);
   --destructive: oklch(0.6 0.22 25);
@@ -80,17 +80,57 @@
     background: var(--foreground);
     color: var(--background);
   }
-  /* Apply glass blur globally to all surface blocks */
-  .bg-surface,
-  .bg-surface\/30,
-  .bg-surface\/50,
-  .bg-surface\/60,
-  .bg-background,
-  .bg-card,
-  .bg-border,
-  .bg-border\/50 {
-    backdrop-filter: blur(12px) saturate(150%);
-    -webkit-backdrop-filter: blur(12px) saturate(150%);
+  /* Glass blur is reserved for floating layers (header, sticky price bar, menus). Repeated
+     cards use a flat tint: over the near-black sky the blur was barely visible but cost
+     frame rate on phones, and it can drop text contrast. */
+  html {
+    /* Keep focused or anchored elements clear of the fixed 72px header. */
+    scroll-padding-top: 88px;
+  }
+  :focus-visible {
+    outline: 2px solid var(--foreground);
+    outline-offset: 3px;
+  }
+  /* Faint static grain for depth; no per-frame cost. */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+}
+
+/* Visitors who ask for less transparency or more contrast get solid, crisper surfaces. */
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --surface: oklch(0.2 0.02 250 / 92%);
+    --surface-2: oklch(0.26 0.02 250 / 95%);
+    --card: oklch(0.2 0.02 250 / 92%);
+  }
+  * {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  body::after {
+    display: none;
+  }
+}
+@media (prefers-contrast: more) {
+  :root {
+    --muted-foreground: oklch(0.86 0.01 250);
+    --border: oklch(1 0 0 / 40%);
+    --hairline: oklch(1 0 0 / 40%);
+  }
+  body::after {
+    display: none;
+  }
+}
+@media (forced-colors: active) {
+  body::after {
+    display: none;
   }
 }
 
@@ -102,9 +142,9 @@
 
 @utility font-mono-tech {
   font-family: var(--font-mono);
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  font-size: 0.7rem;
+  font-size: 0.75rem; /* 12px floor: tiny all-caps labels are hard to read */
   font-weight: 500;
 }
 
@@ -118,7 +158,8 @@
   -webkit-backdrop-filter: blur(32px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  box-shadow: 0 4px 24px -1px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+  /* Soft drop shadow plus a hairline top highlight, so cards read as raised without blur. */
+  box-shadow: 0 4px 24px -1px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.12);
   transition:
     border-color 0.4s ease,
     background 0.4s ease,
@@ -173,8 +214,8 @@
 @utility section-label {
   font-family: var(--font-mono);
   text-transform: uppercase;
-  font-size: 0.68rem;
-  letter-spacing: 0.22em;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
   color: var(--muted-foreground);
 }
 

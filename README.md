@@ -50,6 +50,21 @@ A project with **no `link`** sends visitors to the Contact page when clicked.
 
 Written in plain English so it is easy to understand later. Every item below is also a commit in GitHub's history.
 
+### Not live yet — design & performance upgrades (branch `design-enhancements`)
+
+Built on top of the estimator fixes below, from the "Dark glass studio site design upgrades" research report. Not on `main` or the live site until approved and merged.
+
+- **Images 94% lighter:** every project picture now also exists as WebP (10.1 MB → 0.6 MB in total). The Work page loads the WebP copies (the PNGs remain as a fallback), lazy-loads cards below the first two, and gives images fixed sizes so the page doesn't jump while loading.
+- **Readable Work card labels:** a soft dark fade behind the category/year labels, so they show on light images (Plant Meat, Paalo).
+- **Glass used where it belongs:** the blur effect was removed from all repeated cards and kept only on floating layers (header, mobile menu, live price bar). It looks almost the same on the dark sky but is much lighter for phones.
+- **Easier to read:** grey text slightly brighter, and the small uppercase labels are now at least 12px.
+- **Keyboard users** see a clear white focus outline, and focused items no longer hide under the fixed header.
+- **Accessibility settings respected:** people who turn on "reduce transparency", "increase contrast" or Windows high-contrast mode get solid, crisper surfaces. Animations made with framer-motion follow "reduce motion".
+- **Lighter background animation:** the starfield draws at 30fps (looks the same), shows a still sky for "reduce motion", and stops when the tab is hidden. The hero animation renders at a lower pixel density on high-resolution phones.
+- **Depth:** a very faint static grain over the page and a slightly stronger top highlight on glass cards.
+- **Favicon:** a simple "S7" icon (`public/favicon.svg`) — the site had none, which caused an error on every page.
+- **Search engines:** the site now tells Google who Step7Labs is (Organization structured data).
+
 ### Not live yet — price estimator fixes (branch `estimator-fixes`)
 
 These changes are on the `estimator-fixes` branch only. They are not on `main` or the live site until they are approved and merged.

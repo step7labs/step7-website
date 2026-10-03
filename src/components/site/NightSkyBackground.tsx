@@ -49,7 +49,18 @@ export function NightSkyBackground() {
     window.addEventListener("resize", resize);
     resize();
 
+    // Stars twinkle slowly, so 30fps looks identical and halves the work. Visitors who prefer
+    // reduced motion get one still frame; hidden tabs stop drawing entirely.
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const frameInterval = 1000 / 30;
+    let lastFrame = -Infinity;
+
     const draw = (time: number) => {
+      if (time - lastFrame < frameInterval) {
+        animationFrameId = requestAnimationFrame(draw);
+        return;
+      }
+      lastFrame = time;
       ctx.clearRect(0, 0, width, height);
       
       for (const star of stars) {
@@ -62,13 +73,19 @@ export function NightSkyBackground() {
         ctx.fill();
       }
       
-      animationFrameId = requestAnimationFrame(draw);
+      if (!reduceMotion) animationFrameId = requestAnimationFrame(draw);
     };
-    
+
+    const onVisibility = () => {
+      cancelAnimationFrame(animationFrameId);
+      if (!document.hidden) animationFrameId = requestAnimationFrame(draw);
+    };
+    document.addEventListener("visibilitychange", onVisibility);
     animationFrameId = requestAnimationFrame(draw);
 
     return () => {
       window.removeEventListener("resize", resize);
+      document.removeEventListener("visibilitychange", onVisibility);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
@@ -76,13 +93,13 @@ export function NightSkyBackground() {
   return (
     <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none will-change-transform">
       {/* Stars Layer */}
-      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-60" />
+      <canvas ref={canvasRef} aria-hidden="true" className="absolute inset-0 w-full h-full opacity-60" />
       
       {/* Bottom Clouds Layer (Shifted higher) */}
       <div 
         className="absolute inset-0 opacity-70 mix-blend-screen pointer-events-none"
         style={{
-          backgroundImage: "url('/clouds.png')",
+          backgroundImage: "url('/clouds.webp')",
           backgroundRepeat: "repeat",
           backgroundSize: "200% auto",
           animation: "pan-clouds-bottom 120s linear infinite",
@@ -93,7 +110,7 @@ export function NightSkyBackground() {
       <div 
         className="absolute inset-0 opacity-50 mix-blend-screen pointer-events-none"
         style={{
-          backgroundImage: "url('/clouds.png')",
+          backgroundImage: "url('/clouds.webp')",
           backgroundRepeat: "repeat",
           backgroundSize: "200% auto",
           animation: "pan-clouds-bottom 160s linear infinite reverse",

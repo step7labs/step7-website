@@ -148,19 +148,29 @@ function WorkPage() {
 
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-6 md:px-10 grid md:grid-cols-2 gap-10 md:gap-12">
-          {list.map((p) => {
+          {list.map((p, index) => {
             const cardContent = (
               <>
                 <div
                   className={`relative aspect-[4/3] bg-gradient-to-br ${p.color} overflow-hidden rounded-sm`}
                 >
                   {p.image && (
-                    <img
-                      src={p.image}
-                      alt={p.name}
-                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
+                    <picture>
+                      {/* WebP copies are ~95% smaller; the PNG stays as a fallback. */}
+                      <source srcSet={p.image.replace(/\.png$/, ".webp")} type="image/webp" />
+                      <img
+                        src={p.image}
+                        alt={`${p.name} — ${p.tag}`}
+                        width={1600}
+                        height={1200}
+                        loading={index < 2 ? "eager" : "lazy"}
+                        decoding="async"
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </picture>
                   )}
+                  {/* Keeps the category/year labels legible on light artwork. */}
+                  <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-black/55 to-transparent pointer-events-none" />
                   {!p.image && (
                     <div className="absolute inset-0 grid place-items-center">
                       <div className="font-display text-6xl md:text-8xl text-white/10 tracking-tight">

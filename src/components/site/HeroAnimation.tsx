@@ -117,7 +117,7 @@ export function HeroAnimation({ sectionRef }: HeroAnimationProps) {
 
         width = newWidth;
         height = newHeight;
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
 
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
@@ -134,7 +134,7 @@ export function HeroAnimation({ sectionRef }: HeroAnimationProps) {
     if (canvas.parentElement) {
       width = canvas.parentElement.clientWidth;
       height = canvas.parentElement.clientHeight;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       ctx.scale(dpr, dpr);
@@ -378,6 +378,7 @@ export function HeroAnimation({ sectionRef }: HeroAnimationProps) {
   return (
     <canvas
       ref={canvasRef}
+      aria-hidden="true"
       className="absolute inset-0 pointer-events-none z-0"
       style={{ opacity: 0.8 }}
     />
