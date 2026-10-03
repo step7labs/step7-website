@@ -1,0 +1,110 @@
+# Step7Labs Website
+
+> ## ✅ THIS IS THE MAIN BRANCH
+> The code on `main` is the live website: **www.step7labs.com**.
+> Anything pushed here goes to the real site, so check it first.
+
+---
+
+## Branches in this repo
+
+| Branch | What it is for |
+| --- | --- |
+| `main` | **The live website.** This is the one that matters. |
+| `development` | An older backup copy. It only has a short note saying it is a backup in case a push to `main` goes wrong. |
+| `backup-of-core-structure` | An early backup of the basic site structure. |
+
+## What the site is made with
+
+- TanStack Start (React) with TypeScript
+- Tailwind CSS for styling
+- Built and edited with [Lovable](https://lovable.dev). The project is connected to it, so
+  **never force-push or rewrite old commits**. That would wipe the history on Lovable's side.
+
+## How to run it on your computer
+
+```bash
+npm install
+npm run dev
+```
+
+## Where things live
+
+- `src/routes/` — one file per page (`index.tsx` = Home, `work.tsx` = Work, `services.tsx`, `about.tsx`, `contact.tsx`, `process.tsx`, `investment-guide.tsx`, and the Insights articles).
+- `src/components/site/` — header, footer, page hero, backgrounds.
+- `src/components/pricing/` — the pricing / project estimator on the Investment page.
+- `public/` — images used on the site, including the project pictures on the Work page.
+- `DisabledFeatures.txt` — a list of things that were switched off on purpose but kept in the code so they can be turned back on.
+
+### How to add a project to the Work page
+
+1. Put a picture in `public/` (the existing ones are "showcase" collages: a few browser windows on a themed background).
+2. Open `src/routes/work.tsx` and add an entry to the `projects` list (name, category, tag, year, short line, picture, and a `link` if the site is public).
+3. If it is a new category, add it to the `filters` list in the same file.
+
+A project with **no `link`** sends visitors to the Contact page when clicked.
+
+---
+
+## Change log (newest first)
+
+Written in plain English so it is easy to understand later. Every item below is also a commit in GitHub's history.
+
+### 3 October 2026 — Version: "portfolio update" (Work page: 4 new projects, 2 redesigned)
+
+This was the first update to the site since July. Since then we built several new things, so they were added to the **Work** page.
+
+**New projects on the Work page** (they appear first, at the top):
+
+1. **Plant Meat** — a plant-based meat brand website. Shown as the new version we are building right now, marked "In development". Clicking it opens plantmeat.step7labs.com.
+2. **Verde Theory** — the café website made by Plant Meat. It has its own card. It is marked "Pre-launch" because it is not public yet, so it has no website link (clicking it goes to the Contact page). *When it goes live, add a `link` for it in `src/routes/work.tsx`.*
+3. **NBC PartyLedger** — a custom software (SaaS) platform we built for our client NBC. It is private, so there is **no link and no real screenshots**. The picture uses blank, made-up dashboard shapes and a "Client confidential" lock. No real client data is shown. (The platform runs on our own in-house infrastructure, and that infrastructure's brand name is deliberately kept off the public site.)
+4. **Paalo** — the website for an experiences and events company in Kathmandu. Clicking it opens paalo.step7labs.com.
+
+**New pictures** — four new images were made in `public/` (`plant-meat.png`, `verde-theory.png`, `nbc-platform.png`, `paalo.png`). They follow the same "browser windows on a themed background" look as the NBC Colorzone and Aperture Cosmetics pictures, with each project's own colours and little handwritten notes. The top corners are left empty so the small category and year labels on each card stay readable.
+
+**Bricks & Bolt and JSS Industries pictures redesigned** — these two cards used a single plain screenshot. They now use the same "browser windows on a themed background" style as the others, built from the best parts of each live site (`public/bricks-and-bolt.png` and `public/jss-industries.png`). Bricks & Bolt keeps its glowing 3D crane-and-towers hero, with the projects, vision and "Ready to build" sections around it, on a black and burnt-orange background. JSS shows its hero, product range, stats and brand strip on a dark brown and orange background. The old single screenshots are still in GitHub's history if they are ever needed.
+
+**New filter buttons** on the Work page: **SaaS**, **Food & Beverage** and **Events**. The old filters are still there.
+
+**Also today:** this README was added to `main`.
+
+**Things to know:**
+- The Plant Meat picture shows the version being built now, but its link still opens the older version that is currently online. It will match once the new version is published.
+- Nothing else on the site was changed.
+
+### 10 July 2026 — Work page links
+- The NBC Colorzone and Bricks & Bolt cards now open their real websites when clicked.
+
+### 9 July 2026 — Work page pictures, and the first merge
+- New pictures for NBC Colorzone and Aperture Cosmetics were added to the Work page.
+- The `development` branch was merged into `main` (pull request #1).
+
+### 8 July 2026 — "Deployment Version 1.0"
+- Added a night-sky background across the site.
+- Gave the header and the cards on several pages (About, Services, Process, Contact, Insights, Investment) a softer "frosted glass" look.
+- Small fixes to the footer and the website price estimator.
+
+### 7 July 2026 — "pre-final-variant"
+- Added the pricing and estimator tools used on the Investment page (web estimator, reference pricing, tabs, custom quote card).
+- Added project pictures for Bricks & Bolt and JSS Industries.
+- Added a glowing "digital thread" background effect. It is switched off for now but kept in the code.
+- Added `DisabledFeatures.txt` (list of switched-off items) and `AGENTS.md` (the Lovable warning about not rewriting history).
+- Footer and hero animation tweaks.
+
+### 3 July 2026 — Insights articles
+- Added five Insights articles and fixed the page links so they open correctly.
+
+### 2 July 2026 — Investment guide and real projects
+- Added the **Investment Guide** page and linked it from the header and footer.
+- On the Work page, replaced some of the made-up sample projects with real ones (Bricks & Bolt, NBC Colorzone, JSS Industries).
+
+### 1 July 2026 — "final-version"
+- Added the animated hero on the home page and a smooth cursor-scroll effect.
+
+### 25–27 June 2026 — The website is built
+- The whole site was first built with Lovable: Home, Services, Work, Process, About, Insights and Contact pages, with a dark, premium black-and-white look.
+- On 27 June an experiment with extra motion and new images was tried and then **reverted** (undone), going back to the cleaner version.
+
+### 17 June 2026 — Starting point
+- The project began from the standard Lovable "TanStack Start" template.

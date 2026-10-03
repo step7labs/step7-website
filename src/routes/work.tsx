@@ -24,6 +24,44 @@ export const Route = createFileRoute("/work")({
 
 const projects = [
   {
+    name: "Plant Meat",
+    category: "Food & Beverage",
+    tag: "Brand Website · In Development",
+    year: "2026",
+    metric: "In development",
+    color: "from-emerald-900 to-black",
+    image: "/plant-meat.png",
+    link: "https://plantmeat.step7labs.com",
+  },
+  {
+    name: "Verde Theory",
+    category: "Food & Beverage",
+    tag: "Café Website · Opening Soon",
+    year: "2026",
+    metric: "Pre-launch",
+    color: "from-emerald-950 to-black",
+    image: "/verde-theory.png",
+  },
+  {
+    name: "NBC PartyLedger",
+    category: "SaaS",
+    tag: "Custom SaaS Platform",
+    year: "2026",
+    metric: "Private build",
+    color: "from-slate-800 to-black",
+    image: "/nbc-platform.png",
+  },
+  {
+    name: "Paalo",
+    category: "Events",
+    tag: "Experience Studio Website",
+    year: "2026",
+    metric: "Vite · GSAP · Three.js",
+    color: "from-orange-900 to-black",
+    image: "/paalo.png",
+    link: "https://paalo.step7labs.com",
+  },
+  {
     name: "NBC Colorzone",
     category: "Cosmetics",
     tag: "Digital Catalog",
@@ -64,7 +102,16 @@ const projects = [
   },
 ];
 
-const filters = ["All", "Architecture", "Cosmetics", "LPG Appliances", "Brand"] as const;
+const filters = [
+  "All",
+  "SaaS",
+  "Food & Beverage",
+  "Events",
+  "Architecture",
+  "Cosmetics",
+  "LPG Appliances",
+  "Brand",
+] as const;
 
 function WorkPage() {
   const [filter, setFilter] = useState<(typeof filters)[number]>("All");
