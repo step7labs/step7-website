@@ -1,26 +1,28 @@
-// The Step7Labs symbol — "<7>". A code tag whose closing slash is a 7, and the 7 is built from
-// three bits: seven in binary is 111. Code, the number in our name, and solving problems one
-// step (one bit) at a time. One colour; it inherits the text colour.
-// Full-size files: /public/logo-symbol.svg (light) and /public/logo-symbol-dark.svg.
-const BRACKETS = ["M16 20 L5 32 L16 44", "M48 20 L59 32 L48 44"];
-// The three bits are cut flat where they meet so the gaps stay open at every size; the 7's
-// two outer tips are rounded (circles) to match the brackets.
-const BITS = ["M23 15 L42 15 L39.41 22.57", "M37.91 26.92 L34.7 36.28", "M33.21 40.64 L30 50"];
+// The Step7Labs symbol — "111". Seven in binary is 111: three identical bits, all switched on.
+// Each bit is raised one step and leans forward like a code slash, so together they climb a
+// staircase — big problems solved one step, one bit, at a time. One colour; it inherits the
+// text colour. Full-size files: /public/logo-symbol.svg (light) and /public/logo-symbol-dark.svg.
+const BITS = [
+  { x: 8.25, y: 26 },
+  { x: 26.25, y: 17 },
+  { x: 44.25, y: 8 },
+];
 
 export function LogoMark({ className = "w-7 h-7" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 64 64" aria-hidden="true" className={className}>
-      <g fill="none" stroke="currentColor" strokeWidth="6.5" strokeLinejoin="round">
-        {BRACKETS.map((d) => (
-          <path key={d} d={d} strokeLinecap="round" />
+    <svg viewBox="0 0 64 64" aria-hidden="true" className={className} fill="currentColor">
+      <g transform="translate(9.5 0)">
+        {BITS.map((b) => (
+          <rect
+            key={b.x}
+            x={b.x}
+            y={b.y}
+            width="11.5"
+            height="30"
+            rx="5.75"
+            transform="skewX(-16)"
+          />
         ))}
-        {BITS.map((d) => (
-          <path key={d} d={d} strokeLinecap="butt" />
-        ))}
-      </g>
-      <g fill="currentColor">
-        <circle cx="23" cy="15" r="3.25" />
-        <circle cx="30" cy="50" r="3.25" />
       </g>
     </svg>
   );
