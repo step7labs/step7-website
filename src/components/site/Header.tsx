@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import { LogoMark } from "./LogoMark";
+import { Logo } from "./LogoMark";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -35,8 +35,7 @@ export function Header() {
     >
       <div className="mx-auto max-w-7xl px-6 md:px-10 h-[72px] flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2.5 group">
-          <LogoMark className="w-7 h-7 transition-transform duration-500 group-hover:-rotate-6" />
-          <span className="font-display text-[22px] tracking-tight">Step7Labs</span>
+          <Logo />
           <span className="font-mono-tech text-muted-foreground text-[10px] hidden sm:inline">
             / Studio
           </span>
