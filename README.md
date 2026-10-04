@@ -62,7 +62,11 @@ Built on top of the estimator fixes below, from the "Dark glass studio site desi
 - **Accessibility settings respected:** people who turn on "reduce transparency", "increase contrast" or Windows high-contrast mode get solid, crisper surfaces. Animations made with framer-motion follow "reduce motion".
 - **Lighter background animation:** the starfield draws at 30fps (looks the same), shows a still sky for "reduce motion", and stops when the tab is hidden. The hero animation renders at a lower pixel density on high-resolution phones.
 - **Depth:** a very faint static grain over the page and a slightly stronger top highlight on glass cards.
-- **Favicon:** a simple "S7" icon (`public/favicon.svg`) — the site had none, which caused an error on every page.
+- **New logo — "Seven stars":** seven stars joined like a constellation into the number 7 (three across, four down); the seventh star is a sparkle — the finished step. It ties the name (Step **7**), the night-sky theme and the idea of building step by step.
+  - Shown next to the "Step7Labs" wordmark in the header and in the footer (`src/components/site/LogoMark.tsx`).
+  - Files: `public/logo.svg` (white, for dark backgrounds), `public/logo-dark.svg` (black, for light backgrounds).
+  - Favicon (`public/favicon.svg`): a bolder single-stroke 7 with the sparkle, so it stays clear at 16px. The site had no favicon before, which caused an error on every page.
+  - Phone home-screen icon (`public/apple-touch-icon.png`) and a share image for WhatsApp/LinkedIn/X links (`public/og-image.jpg`).
 - **Search engines:** the site now tells Google who Step7Labs is (Organization structured data).
 
 ### Not live yet — price estimator fixes (branch `estimator-fixes`)

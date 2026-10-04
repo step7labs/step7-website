@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { LogoMark } from "./LogoMark";
 import { ArrowUpRight } from "lucide-react";
 
 export function Footer() {
@@ -109,7 +110,10 @@ export function Footer() {
         </div>
 
         <div className="mt-20 pt-8 border-t hairline flex flex-col md:flex-row justify-between items-start md:items-center gap-4 text-xs font-mono-tech text-foreground">
-          <div>© 2026 Step7Labs — Digital Product Studio</div>
+          <div className="flex items-center gap-3">
+            <LogoMark className="w-5 h-5" />
+            <span>© 2026 Step7Labs — Digital Product Studio</span>
+          </div>
           <div>Crafted with intention. Built to perform.</div>
         </div>
       </div>
