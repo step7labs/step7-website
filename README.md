@@ -50,9 +50,11 @@ A project with **no `link`** sends visitors to the Contact page when clicked.
 
 Written in plain English so it is easy to understand later. Every item below is also a commit in GitHub's history.
 
-### Not live yet — design & performance upgrades (branch `design-enhancements`)
+### 4 October 2026 — Version: "estimator, design & logo update" (part 2 of 2: design, performance and new logo)
 
-Built on top of the estimator fixes below, from the "Dark glass studio site design upgrades" research report. Not on `main` or the live site until approved and merged.
+Released together with the estimator fixes below. Based on the "Dark glass studio site design upgrades" research report. The logo went through a few drafts (a constellation, a spark, a `<7>` tag) before the final "111"; those drafts appear in the commit history, but only "111" is used on the site.
+
+**After deploying:** until Hostinger fixes the bare-domain mapping, copy the new build's `public` files (including the new `.webp`, `favicon.svg`, `apple-touch-icon.png`, `og-image.jpg` and `brand/` files) into `domains/step7labs.com/nodejs/public` in the File Manager, or step7labs.com (without www) will show unstyled.
 
 - **Images 94% lighter:** every project picture now also exists as WebP (10.1 MB → 0.6 MB in total). The Work page loads the WebP copies (the PNGs remain as a fallback), lazy-loads cards below the first two, and gives images fixed sizes so the page doesn't jump while loading.
 - **Readable Work card labels:** a soft dark fade behind the category/year labels, so they show on light images (Plant Meat, Paalo).
@@ -68,9 +70,7 @@ Built on top of the estimator fixes below, from the "Dark glass studio site desi
   - App-tile favicon (`public/favicon.svg`), phone home-screen icon (`public/apple-touch-icon.png`) and link-share image (`public/og-image.jpg`). The site had no favicon before, which caused an error on every page.
 - **Search engines:** the site now tells Google who Step7Labs is (Organization structured data).
 
-### Not live yet — price estimator fixes (branch `estimator-fixes`)
-
-These changes are on the `estimator-fixes` branch only. They are not on `main` or the live site until they are approved and merged.
+### 4 October 2026 — Version: "estimator, design & logo update" (part 1 of 2: price estimator and contact form)
 
 **Contact form now actually sends.** Before this, the form showed "Thanks" but sent nothing, so every inquiry was lost. Now:
 - If a Web3Forms access key is set (`VITE_WEB3FORMS_ACCESS_KEY` in Hostinger → Environment variables, then redeploy), messages are emailed to us.
