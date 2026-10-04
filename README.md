@@ -107,7 +107,7 @@ This was the first update to the site since July. Since then we built several ne
 **New projects on the Work page** (they appear first, at the top):
 
 1. **Plant Meat** — a plant-based meat brand website. Shown as the new version we are building right now, marked "In development". Clicking it opens plantmeat.step7labs.com.
-2. **Verde Theory** — the café website made by Plant Meat. It has its own card. It is marked "Pre-launch" because it is not public yet, so it has no website link (clicking it goes to the Contact page). *When it goes live, add a `link` for it in `src/routes/work.tsx`.*
+2. **Verde Theory** — the café website made by Plant Meat. It has its own card. It is marked "Pre-launch". Clicking it opens the Verde Theory page at pm.step7labs.com/verde/ (link added on 4 October 2026).
 3. **NBC PartyLedger** — a custom software (SaaS) platform we built for our client NBC. It is private, so there is **no link and no real screenshots**. The picture uses blank, made-up dashboard shapes and a "Client confidential" lock. No real client data is shown. (The platform runs on our own in-house infrastructure, and that infrastructure's brand name is deliberately kept off the public site.)
 4. **Paalo** — the website for an experiences and events company in Kathmandu. Clicking it opens paalo.step7labs.com.
 

@@ -41,6 +41,7 @@ const projects = [
     metric: "Pre-launch",
     color: "from-emerald-950 to-black",
     image: "/verde-theory.png",
+    link: "https://pm.step7labs.com/verde/",
   },
   {
     name: "NBC PartyLedger",
